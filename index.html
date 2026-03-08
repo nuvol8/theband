@@ -58,9 +58,7 @@
     /* ========== NAV ========== */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
       background: var(--glass);
       backdrop-filter: blur(16px);
@@ -324,12 +322,33 @@
       margin-top: 0.3rem;
     }
 
+    /* ========== CALLOUT BANNER ========== */
+    .callout-banner {
+      background: linear-gradient(135deg, rgba(232,146,42,0.12), rgba(196,64,48,0.08));
+      border: 1px solid var(--accent-d);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .callout-banner .callout-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .callout-banner .callout-text {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+    .callout-banner .callout-text strong {
+      color: var(--accent);
+    }
+
     /* ========== MEMBERS ========== */
     .members-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
     .members-inner { max-width: 1100px; margin: 0 auto; }
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -370,10 +389,44 @@
       letter-spacing: 0.08em;
     }
 
+    /* Former members */
+    .former-members {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .former-title {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .former-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+    .former-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .former-chip .former-role {
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-left: 0.3rem;
+    }
+
     /* ========== DISCOGRAPHY ========== */
     .disco-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -394,7 +447,7 @@
       align-items: center;
       justify-content: center;
       font-family: var(--ff-display);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       letter-spacing: 0.05em;
       color: var(--text);
       text-align: center;
@@ -413,10 +466,11 @@
     .album-card:nth-child(3) .album-cover { background: linear-gradient(135deg, #1a1a0a, #353515); }
     .album-card:nth-child(4) .album-cover { background: linear-gradient(135deg, #0a1a0a, #153515); }
     .album-card:nth-child(5) .album-cover { background: linear-gradient(135deg, #1a0a1a, #351535); }
+    .album-card:nth-child(6) .album-cover { background: linear-gradient(135deg, #0a1a1a, #153535); }
     .album-info { padding: 1rem; }
     .album-title {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-bottom: 0.25rem;
     }
     .album-year {
@@ -433,19 +487,35 @@
     /* ========== VIDEOS ========== */
     .videos-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
     .videos-inner { max-width: 1100px; margin: 0 auto; }
-    .video-placeholder {
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .video-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 4rem 2rem;
-      text-align: center;
-      color: var(--text-muted);
-      margin-top: 2rem;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
     }
-    .video-placeholder-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      opacity: 0.4;
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-d);
+    }
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: block;
+      border: none;
+    }
+    .video-card .video-info {
+      padding: 0.8rem 1rem;
+    }
+    .video-card .video-name {
+      font-weight: 600;
+      font-size: 0.9rem;
     }
 
     /* ========== LISTEN ========== */
@@ -502,7 +572,7 @@
     }
     .contact-email {
       font-family: var(--ff-display);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       letter-spacing: 0.04em;
     }
     .social-links {
@@ -523,6 +593,8 @@
       font-size: 1.1rem;
     }
     .social-link:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .social-link svg { width: 20px; height: 20px; fill: var(--text-dim); }
+    .social-link:hover svg { fill: var(--accent); }
 
     /* ========== FOOTER ========== */
     footer {
@@ -541,9 +613,10 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
-      .members-grid { grid-template-columns: repeat(3, 1fr); }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
       .about-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 700px) {
       .nav-links { display: none; }
@@ -552,8 +625,7 @@
         flex-direction: column;
         position: absolute;
         top: 64px;
-        left: 0;
-        right: 0;
+        left: 0; right: 0;
         background: var(--glass);
         backdrop-filter: blur(16px);
         padding: 1.5rem;
@@ -632,22 +704,22 @@
 <section id="about">
   <div class="reveal">
     <div class="section-label" data-i18n="nav_about">Le Groupe</div>
-    <h2 class="section-title" data-i18n="about_title">Cinq musiciens,<br>une complicité</h2>
+    <h2 class="section-title" data-i18n="about_title">Quatre musiciens,<br>une complicité</h2>
     <div class="section-divider"></div>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p data-i18n="about_p1">ConnivAnce est né en 2019 de la rencontre de cinq musiciens expérimentés partageant une même passion pour le Rock, le Pop et le Funk. Le groupe tire son nom de l'entente exceptionnelle qui unit ses membres sur scène comme en studio.</p>
+      <p data-i18n="about_p1">ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.</p>
       <p data-i18n="about_p2">Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.</p>
-      <p data-i18n="about_p3">Depuis 2019, le groupe a sorti cinq EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.</p>
+      <p data-i18n="about_p3">Depuis 2019, le groupe a sorti six EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.</p>
     </div>
     <div class="about-stats reveal">
       <div>
-        <div class="stat-num">5</div>
+        <div class="stat-num">6</div>
         <div class="stat-label">EP</div>
       </div>
       <div>
-        <div class="stat-num">5</div>
+        <div class="stat-num">4</div>
         <div class="stat-label" data-i18n="stat_musicians">Musiciens</div>
       </div>
       <div>
@@ -673,24 +745,36 @@
         <div class="member-role" data-i18n="role_vocals">Chant</div>
       </div>
       <div class="member-card reveal">
-        <div class="member-avatar">P</div>
-        <div class="member-name">Pascal Robert</div>
-        <div class="member-role" data-i18n="role_guitar">Guitare</div>
-      </div>
-      <div class="member-card reveal">
         <div class="member-avatar">C</div>
         <div class="member-name">Claude Brotons</div>
-        <div class="member-role" data-i18n="role_guitar">Guitare</div>
+        <div class="member-role" data-i18n="role_lead_guitar">Guitare lead</div>
       </div>
       <div class="member-card reveal">
-        <div class="member-avatar">A</div>
-        <div class="member-name">Angelo Corsaro</div>
+        <div class="member-avatar">N</div>
+        <div class="member-name">Nuvolari</div>
         <div class="member-role" data-i18n="role_bass">Basse</div>
       </div>
       <div class="member-card reveal">
         <div class="member-avatar">D</div>
         <div class="member-name">Didier Saadaoui</div>
         <div class="member-role" data-i18n="role_drums">Batterie</div>
+      </div>
+    </div>
+
+    <!-- Callout: looking for keyboardist -->
+    <div class="callout-banner reveal">
+      <div class="callout-icon">&#127929;</div>
+      <div class="callout-text" data-i18n="callout_keys"><strong>Nous recherchons un(e) claviériste !</strong> Vous êtes passionné(e) de Rock, Pop et Funk ? Contactez-nous.</div>
+    </div>
+
+    <!-- Former members -->
+    <div class="former-members reveal">
+      <div class="former-title" data-i18n="former_title">Anciens membres</div>
+      <div class="former-grid">
+        <div class="former-chip">Pascal Robert <span class="former-role" data-i18n="role_guitar">— Guitare</span></div>
+        <div class="former-chip">Stéphane Sevellec <span class="former-role" data-i18n="role_drums">— Batterie</span></div>
+        <div class="former-chip">Didier Augustine <span class="former-role" data-i18n="role_bass">— Basse</span></div>
+        <div class="former-chip">Didier Rajobson <span class="former-role" data-i18n="role_bass">— Basse</span></div>
       </div>
     </div>
   </div>
@@ -705,9 +789,9 @@
   </div>
   <div class="disco-grid">
     <div class="album-card reveal">
-      <div class="album-cover">Dancing<br>With The<br>Devil</div>
+      <div class="album-cover">ConnivAnce</div>
       <div class="album-info">
-        <div class="album-title">Dancing With The Devil</div>
+        <div class="album-title">ConnivAnce</div>
         <div class="album-year">2019</div>
         <div class="album-type">EP1</div>
       </div>
@@ -744,6 +828,14 @@
         <div class="album-type">EP5</div>
       </div>
     </div>
+    <div class="album-card reveal">
+      <div class="album-cover">VI</div>
+      <div class="album-info">
+        <div class="album-title">VI</div>
+        <div class="album-year">2025</div>
+        <div class="album-type">EP6</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -755,9 +847,23 @@
       <h2 class="section-title" data-i18n="videos_title">En images</h2>
       <div class="section-divider"></div>
     </div>
-    <div class="video-placeholder reveal">
-      <div class="video-placeholder-icon">&#9654;</div>
-      <p data-i18n="videos_coming">Vidéos à venir — Restez connectés !</p>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <iframe src="https://www.youtube.com/embed/7lQwnK5DLK4" title="Mathilde" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-info"><div class="video-name">Mathilde</div></div>
+      </div>
+      <div class="video-card reveal">
+        <iframe src="https://www.youtube.com/embed/ajUtcjDD0cc" title="Wake Up" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-info"><div class="video-name">Wake Up</div></div>
+      </div>
+      <div class="video-card reveal">
+        <iframe src="https://www.youtube.com/embed/uktSNs4JJnw" title="Funk School" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-info"><div class="video-name">Funk School</div></div>
+      </div>
+      <div class="video-card reveal">
+        <iframe src="https://www.youtube.com/embed/j5UD8y8erMY" title="The Dark And The Light" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-info"><div class="video-name">The Dark And The Light</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -770,7 +876,7 @@
     <div class="section-divider"></div>
   </div>
   <div class="listen-grid">
-    <a href="https://open.spotify.com/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="listen-card reveal">
+    <a href="https://open.spotify.com/intl-fr/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="listen-card reveal">
       <div class="listen-icon">&#9835;</div>
       <div><div class="listen-name">Spotify</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
     </a>
@@ -778,13 +884,21 @@
       <div class="listen-icon">&#9835;</div>
       <div><div class="listen-name">Apple Music</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
     </a>
+    <a href="https://www.youtube.com/c/ConnivAnceMusique" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#9654;</div>
+      <div><div class="listen-name">YouTube</div><div class="listen-sub" data-i18n="listen_video">Vidéos</div></div>
+    </a>
     <a href="https://soundcloud.com/connivance-2021/tracks" target="_blank" rel="noopener" class="listen-card reveal">
       <div class="listen-icon">&#9835;</div>
       <div><div class="listen-name">SoundCloud</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
     </a>
-    <a href="https://www.facebook.com/p/ConnivAnce-100063713343016/" target="_blank" rel="noopener" class="listen-card reveal">
+    <a href="https://www.facebook.com/ConnivAnce-290490511870181" target="_blank" rel="noopener" class="listen-card reveal">
       <div class="listen-icon">&#9834;</div>
       <div><div class="listen-name">Facebook</div><div class="listen-sub" data-i18n="listen_social">Réseau social</div></div>
+    </a>
+    <a href="https://mobile.twitter.com/ConnivAnceMusic" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#120143;</div>
+      <div><div class="listen-name">X / Twitter</div><div class="listen-sub" data-i18n="listen_social">Réseau social</div></div>
     </a>
   </div>
 </section>
@@ -800,11 +914,20 @@
     <div class="contact-grid">
       <div class="contact-info reveal">
         <p data-i18n="contact_p1">Pour toute demande de booking, collaboration ou simplement pour dire bonjour, n'hésitez pas à nous contacter.</p>
-        <a href="mailto:fovizeo@gmail.com" class="contact-email">fovizeo@gmail.com</a>
+        <a href="mailto:connivance-music@orange.fr" class="contact-email">connivance-music@orange.fr</a>
         <div class="social-links">
-          <a href="https://www.facebook.com/p/ConnivAnce-100063713343016/" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
-          <a href="https://soundcloud.com/connivance-2021/tracks" target="_blank" rel="noopener" class="social-link" title="SoundCloud">S</a>
-          <a href="https://open.spotify.com/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="social-link" title="Spotify">&#9835;</a>
+          <a href="https://www.facebook.com/ConnivAnce-290490511870181" target="_blank" rel="noopener" class="social-link" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/c/ConnivAnceMusique" target="_blank" rel="noopener" class="social-link" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://open.spotify.com/intl-fr/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="social-link" title="Spotify">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          </a>
+          <a href="https://mobile.twitter.com/ConnivAnceMusic" target="_blank" rel="noopener" class="social-link" title="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
         </div>
       </div>
       <div class="reveal" style="color: var(--text-dim); font-size: 0.9rem;">
@@ -828,16 +951,18 @@ const T = {
     nav_videos: "Vidéos", nav_listen: "Écouter", nav_contact: "Contact",
     hero_sub: "Covers & compositions originales depuis 2019",
     hero_cta: "Écouter maintenant",
-    about_title: "Cinq musiciens,<br>une complicité",
-    about_p1: "ConnivAnce est né en 2019 de la rencontre de cinq musiciens expérimentés partageant une même passion pour le Rock, le Pop et le Funk. Le groupe tire son nom de l'entente exceptionnelle qui unit ses membres sur scène comme en studio.",
+    about_title: "Quatre musiciens,<br>une complicité",
+    about_p1: "ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.",
     about_p2: "Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.",
-    about_p3: "Depuis 2019, le groupe a sorti cinq EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.",
+    about_p3: "Depuis 2019, le groupe a sorti six EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.",
     stat_musicians: "Musiciens", stat_since: "Depuis",
     members_title: "Le Line-up",
-    role_vocals: "Chant", role_guitar: "Guitare", role_bass: "Basse", role_drums: "Batterie",
+    role_vocals: "Chant", role_lead_guitar: "Guitare lead", role_guitar: "Guitare", role_bass: "Basse", role_drums: "Batterie",
+    callout_keys: "<strong>Nous recherchons un(e) claviériste !</strong> Vous êtes passionné(e) de Rock, Pop et Funk ? Contactez-nous.",
+    former_title: "Anciens membres",
     disco_title: "Nos Albums",
-    videos_title: "En images", videos_coming: "Vidéos à venir — Restez connectés !",
-    listen_title: "Retrouvez-nous partout", listen_stream: "Streaming", listen_social: "Réseau social",
+    videos_title: "En images",
+    listen_title: "Retrouvez-nous partout", listen_stream: "Streaming", listen_video: "Vidéos", listen_social: "Réseau social",
     contact_title: "Parlons musique",
     contact_p1: "Pour toute demande de booking, collaboration ou simplement pour dire bonjour, n'hésitez pas à nous contacter.",
     contact_p2: "ConnivAnce est basé en Île-de-France et se produit en concerts dans toute la région parisienne et au-delà.",
@@ -848,16 +973,18 @@ const T = {
     nav_videos: "Videos", nav_listen: "Listen", nav_contact: "Contact",
     hero_sub: "Covers & original compositions since 2019",
     hero_cta: "Listen now",
-    about_title: "Five musicians,<br>one bond",
-    about_p1: "ConnivAnce was born in 2019 from the meeting of five experienced musicians sharing a common passion for Rock, Pop, and Funk. The band takes its name from the exceptional chemistry that unites its members on stage and in the studio.",
+    about_title: "Four musicians,<br>one bond",
+    about_p1: "ConnivAnce is a Rock/Pop/Funk band from the Île-de-France region, born in 2019 from the meeting of experienced musicians sharing a common passion for performing. The band takes its name from the exceptional chemistry that unites its members on stage and in the studio.",
     about_p2: "Their repertoire blends covers of legendary artists — David Bowie, Muse, Radiohead, INXS, Talking Heads, The Rolling Stones, Alain Bashung, Axel Bauer — with original compositions featuring a bold Rock sound and catchy melodies.",
-    about_p3: "Since 2019, the band has released five original EPs, performed numerous live shows, and been featured on several web radio stations. Their onstage energy and infectious chemistry make them a must-see act on the Parisian Pop/Rock scene.",
+    about_p3: "Since 2019, the band has released six original EPs, performed numerous live shows, and been featured on several web radio stations. Their onstage energy and infectious chemistry make them a must-see act on the Parisian Pop/Rock scene.",
     stat_musicians: "Musicians", stat_since: "Since",
     members_title: "The Line-up",
-    role_vocals: "Vocals", role_guitar: "Guitar", role_bass: "Bass", role_drums: "Drums",
+    role_vocals: "Vocals", role_lead_guitar: "Lead Guitar", role_guitar: "Guitar", role_bass: "Bass", role_drums: "Drums",
+    callout_keys: "<strong>We're looking for a keyboardist!</strong> Passionate about Rock, Pop and Funk? Get in touch.",
+    former_title: "Former members",
     disco_title: "Our Albums",
-    videos_title: "On screen", videos_coming: "Videos coming soon — Stay tuned!",
-    listen_title: "Find us everywhere", listen_stream: "Streaming", listen_social: "Social",
+    videos_title: "On screen",
+    listen_title: "Find us everywhere", listen_stream: "Streaming", listen_video: "Videos", listen_social: "Social",
     contact_title: "Let's talk music",
     contact_p1: "For booking inquiries, collaborations, or just to say hello, don't hesitate to get in touch.",
     contact_p2: "ConnivAnce is based in the Île-de-France region and performs live across the greater Paris area and beyond.",
@@ -868,16 +995,18 @@ const T = {
     nav_videos: "Video", nav_listen: "Ascolta", nav_contact: "Contatto",
     hero_sub: "Cover e composizioni originali dal 2019",
     hero_cta: "Ascolta ora",
-    about_title: "Cinque musicisti,<br>una complicità",
-    about_p1: "ConnivAnce è nato nel 2019 dall'incontro di cinque musicisti esperti che condividono la stessa passione per il Rock, il Pop e il Funk. Il gruppo prende il nome dall'intesa eccezionale che unisce i suoi membri sul palco e in studio.",
+    about_title: "Quattro musicisti,<br>una complicità",
+    about_p1: "ConnivAnce è un gruppo Rock/Pop/Funk dell'Île-de-France, nato nel 2019 dall'incontro di musicisti esperti che condividono la stessa passione per il palco. Il gruppo prende il nome dall'intesa eccezionale che unisce i suoi membri sul palco e in studio.",
     about_p2: "Il loro repertorio mescola cover di grandi artisti — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composizioni originali dal suono Rock deciso e melodie orecchiabili.",
-    about_p3: "Dal 2019, il gruppo ha pubblicato cinque EP originali, suonato in numerosi concerti live ed è stato trasmesso su diverse web radio. La loro energia sul palco e la complicità contagiosa li rendono un gruppo imperdibile della scena Pop/Rock parigina.",
+    about_p3: "Dal 2019, il gruppo ha pubblicato sei EP originali, suonato in numerosi concerti live ed è stato trasmesso su diverse web radio. La loro energia sul palco e la complicità contagiosa li rendono un gruppo imperdibile della scena Pop/Rock parigina.",
     stat_musicians: "Musicisti", stat_since: "Dal",
     members_title: "La Formazione",
-    role_vocals: "Voce", role_guitar: "Chitarra", role_bass: "Basso", role_drums: "Batteria",
+    role_vocals: "Voce", role_lead_guitar: "Chitarra solista", role_guitar: "Chitarra", role_bass: "Basso", role_drums: "Batteria",
+    callout_keys: "<strong>Cerchiamo un/una tastierista!</strong> Appassionato/a di Rock, Pop e Funk? Contattaci.",
+    former_title: "Ex membri",
     disco_title: "I nostri Album",
-    videos_title: "In video", videos_coming: "Video in arrivo — Restate connessi!",
-    listen_title: "Trovateci ovunque", listen_stream: "Streaming", listen_social: "Social",
+    videos_title: "In video",
+    listen_title: "Trovateci ovunque", listen_stream: "Streaming", listen_video: "Video", listen_social: "Social",
     contact_title: "Parliamo di musica",
     contact_p1: "Per richieste di booking, collaborazioni o semplicemente per salutarci, non esitate a contattarci.",
     contact_p2: "ConnivAnce ha sede nell'Île-de-France e si esibisce in concerti in tutta la regione parigina e oltre.",
@@ -888,16 +1017,18 @@ const T = {
     nav_videos: "Videos", nav_listen: "Escuchar", nav_contact: "Contacto",
     hero_sub: "Covers y composiciones originales desde 2019",
     hero_cta: "Escuchar ahora",
-    about_title: "Cinco músicos,<br>una complicidad",
-    about_p1: "ConnivAnce nació en 2019 del encuentro de cinco músicos experimentados que comparten la misma pasión por el Rock, el Pop y el Funk. El grupo toma su nombre de la excepcional compenetración que une a sus miembros en el escenario y en el estudio.",
+    about_title: "Cuatro músicos,<br>una complicidad",
+    about_p1: "ConnivAnce es un grupo de Rock/Pop/Funk de Île-de-France, nacido en 2019 del encuentro de músicos experimentados que comparten la misma pasión por el escenario. El grupo toma su nombre de la excepcional compenetración que une a sus miembros en el escenario y en el estudio.",
     about_p2: "Su repertorio mezcla versiones de grandes artistas — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composiciones originales de sonido Rock contundente y melodías pegadizas.",
-    about_p3: "Desde 2019, el grupo ha lanzado cinco EP originales, ha dado numerosos conciertos en vivo y ha sido transmitido en varias radios web. Su energía en el escenario y su complicidad contagiosa los convierten en un grupo imprescindible de la escena Pop/Rock parisina.",
+    about_p3: "Desde 2019, el grupo ha lanzado seis EP originales, ha dado numerosos conciertos en vivo y ha sido transmitido en varias radios web. Su energía en el escenario y su complicidad contagiosa los convierten en un grupo imprescindible de la escena Pop/Rock parisina.",
     stat_musicians: "Músicos", stat_since: "Desde",
     members_title: "La Formación",
-    role_vocals: "Voz", role_guitar: "Guitarra", role_bass: "Bajo", role_drums: "Batería",
+    role_vocals: "Voz", role_lead_guitar: "Guitarra solista", role_guitar: "Guitarra", role_bass: "Bajo", role_drums: "Batería",
+    callout_keys: "<strong>¡Buscamos tecladista!</strong> ¿Apasionado/a del Rock, Pop y Funk? Contáctanos.",
+    former_title: "Antiguos miembros",
     disco_title: "Nuestros Álbumes",
-    videos_title: "En pantalla", videos_coming: "Videos próximamente — ¡Mantente conectado!",
-    listen_title: "Encuéntranos en todas partes", listen_stream: "Streaming", listen_social: "Red social",
+    videos_title: "En pantalla",
+    listen_title: "Encuéntranos en todas partes", listen_stream: "Streaming", listen_video: "Videos", listen_social: "Red social",
     contact_title: "Hablemos de música",
     contact_p1: "Para solicitudes de contratación, colaboraciones o simplemente para saludar, no dudes en contactarnos.",
     contact_p2: "ConnivAnce tiene su sede en Île-de-France y actúa en conciertos en toda la región parisina y más allá.",
@@ -908,16 +1039,18 @@ const T = {
     nav_videos: "動画", nav_listen: "試聴", nav_contact: "お問い合わせ",
     hero_sub: "2019年からカバー＆オリジナル楽曲を演奏",
     hero_cta: "今すぐ聴く",
-    about_title: "5人のミュージシャン、<br>ひとつの絆",
-    about_p1: "ConnivAnceは2019年、ロック、ポップ、ファンクへの共通の情熱を持つ5人の経験豊富なミュージシャンの出会いから誕生しました。バンド名は、ステージでもスタジオでもメンバーを結びつける卓越した一体感に由来しています。",
+    about_title: "4人のミュージシャン、<br>ひとつの絆",
+    about_p1: "ConnivAnceはイル＝ド＝フランス地域を拠点とするロック/ポップ/ファンクバンドで、2019年にステージへの共通の情熱を持つ経験豊富なミュージシャンたちの出会いから誕生しました。バンド名は、メンバーを結びつける卓越した一体感に由来しています。",
     about_p2: "レパートリーは、David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauerなどの偉大なアーティストのカバーと、力強いロックサウンドとキャッチーなメロディを持つオリジナル楽曲を融合しています。",
-    about_p3: "2019年以来、5枚のオリジナルEPをリリースし、数多くのライブを行い、複数のウェブラジオで放送されています。ステージでのエネルギーと伝染する一体感が、パリのポップ/ロックシーンで見逃せないバンドとなっています。",
+    about_p3: "2019年以来、6枚のオリジナルEPをリリースし、数多くのライブを行い、複数のウェブラジオで放送されています。ステージでのエネルギーと伝染する一体感が、パリのポップ/ロックシーンで見逃せないバンドとなっています。",
     stat_musicians: "ミュージシャン", stat_since: "結成",
     members_title: "ラインナップ",
-    role_vocals: "ボーカル", role_guitar: "ギター", role_bass: "ベース", role_drums: "ドラム",
+    role_vocals: "ボーカル", role_lead_guitar: "リードギター", role_guitar: "ギター", role_bass: "ベース", role_drums: "ドラム",
+    callout_keys: "<strong>キーボーディスト募集中！</strong>ロック、ポップ、ファンクに情熱のある方、ご連絡ください。",
+    former_title: "元メンバー",
     disco_title: "アルバム",
-    videos_title: "映像", videos_coming: "動画は近日公開 — お楽しみに！",
-    listen_title: "各プラットフォームで配信中", listen_stream: "ストリーミング", listen_social: "SNS",
+    videos_title: "映像",
+    listen_title: "各プラットフォームで配信中", listen_stream: "ストリーミング", listen_video: "動画", listen_social: "SNS",
     contact_title: "音楽の話をしましょう",
     contact_p1: "ブッキングのご依頼、コラボレーション、またはお気軽にご連絡ください。",
     contact_p2: "ConnivAnceはイル＝ド＝フランス地域を拠点に、パリ近郊を中心にライブ活動を行っています。",
@@ -928,16 +1061,18 @@ const T = {
     nav_videos: "视频", nav_listen: "在线收听", nav_contact: "联系我们",
     hero_sub: "自2019年起演绎翻唱与原创作品",
     hero_cta: "立即收听",
-    about_title: "五位音乐人，<br>一种默契",
-    about_p1: "ConnivAnce诞生于2019年，由五位对摇滚、流行和放克音乐怀有共同热情的资深音乐人组成。乐队名称源于成员之间在舞台和录音室中非凡的默契与和谐。",
+    about_title: "四位音乐人，<br>一种默契",
+    about_p1: "ConnivAnce是一支来自法兰西岛大区的摇滚/流行/放克乐队，2019年由几位怀有共同舞台热情的资深音乐人组成。乐队名称源于成员之间在舞台和录音室中非凡的默契与和谐。",
     about_p2: "他们的曲目融合了David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauer等伟大艺术家的翻唱，以及具有鲜明摇滚风格和朗朗上口旋律的原创作品。",
-    about_p3: "自2019年以来，乐队已发行五张原创EP，举办了众多现场演出，并在多家网络电台播出。他们在舞台上的能量和感染力使他们成为巴黎流行/摇滚界不可错过的乐队。",
+    about_p3: "自2019年以来，乐队已发行六张原创EP，举办了众多现场演出，并在多家网络电台播出。他们在舞台上的能量和感染力使他们成为巴黎流行/摇滚界不可错过的乐队。",
     stat_musicians: "音乐人", stat_since: "成立于",
     members_title: "阵容",
-    role_vocals: "主唱", role_guitar: "吉他", role_bass: "贝斯", role_drums: "鼓",
+    role_vocals: "主唱", role_lead_guitar: "主音吉他", role_guitar: "吉他", role_bass: "贝斯", role_drums: "鼓",
+    callout_keys: "<strong>招募键盘手！</strong>热爱摇滚、流行和放克音乐？请联系我们。",
+    former_title: "前成员",
     disco_title: "我们的专辑",
-    videos_title: "精彩视频", videos_coming: "视频即将上线——敬请期待！",
-    listen_title: "在各平台收听", listen_stream: "流媒体", listen_social: "社交媒体",
+    videos_title: "精彩视频",
+    listen_title: "在各平台收听", listen_stream: "流媒体", listen_video: "视频", listen_social: "社交媒体",
     contact_title: "聊聊音乐",
     contact_p1: "如有演出预约、合作意向或只是想打个招呼，请随时联系我们。",
     contact_p2: "ConnivAnce位于法兰西岛大区，在巴黎地区及周边进行现场演出。",
