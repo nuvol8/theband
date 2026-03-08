@@ -322,33 +322,12 @@
       margin-top: 0.3rem;
     }
 
-    /* ========== CALLOUT BANNER ========== */
-    .callout-banner {
-      background: linear-gradient(135deg, rgba(232,146,42,0.12), rgba(196,64,48,0.08));
-      border: 1px solid var(--accent-d);
-      border-radius: 8px;
-      padding: 1.5rem 2rem;
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .callout-banner .callout-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-    .callout-banner .callout-text {
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-    .callout-banner .callout-text strong {
-      color: var(--accent);
-    }
-
     /* ========== MEMBERS ========== */
     .members-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
     .members-inner { max-width: 1100px; margin: 0 auto; }
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -613,7 +592,7 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
-      .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .members-grid { grid-template-columns: repeat(3, 1fr); }
       .about-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .video-grid { grid-template-columns: 1fr; }
@@ -704,12 +683,12 @@
 <section id="about">
   <div class="reveal">
     <div class="section-label" data-i18n="nav_about">Le Groupe</div>
-    <h2 class="section-title" data-i18n="about_title">Quatre musiciens,<br>une complicité</h2>
+    <h2 class="section-title" data-i18n="about_title">Cinq musiciens,<br>une complicité</h2>
     <div class="section-divider"></div>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p data-i18n="about_p1">ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.</p>
+      <p data-i18n="about_p1">ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de cinq musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.</p>
       <p data-i18n="about_p2">Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.</p>
       <p data-i18n="about_p3">Depuis 2019, le groupe a sorti six EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.</p>
     </div>
@@ -719,7 +698,7 @@
         <div class="stat-label">EP</div>
       </div>
       <div>
-        <div class="stat-num">4</div>
+        <div class="stat-num">5</div>
         <div class="stat-label" data-i18n="stat_musicians">Musiciens</div>
       </div>
       <div>
@@ -741,13 +720,18 @@
     <div class="members-grid">
       <div class="member-card reveal">
         <div class="member-avatar">B</div>
-        <div class="member-name">Benjamin Muller</div>
+        <div class="member-name">Benjamin</div>
         <div class="member-role" data-i18n="role_vocals">Chant</div>
       </div>
       <div class="member-card reveal">
         <div class="member-avatar">C</div>
-        <div class="member-name">Claude Brotons</div>
+        <div class="member-name">Claude</div>
         <div class="member-role" data-i18n="role_lead_guitar">Guitare lead</div>
+      </div>
+      <div class="member-card reveal">
+        <div class="member-avatar">M</div>
+        <div class="member-name">Manue</div>
+        <div class="member-role" data-i18n="role_keys">Claviers</div>
       </div>
       <div class="member-card reveal">
         <div class="member-avatar">N</div>
@@ -756,15 +740,9 @@
       </div>
       <div class="member-card reveal">
         <div class="member-avatar">D</div>
-        <div class="member-name">Didier Saadaoui</div>
+        <div class="member-name">Didier</div>
         <div class="member-role" data-i18n="role_drums">Batterie</div>
       </div>
-    </div>
-
-    <!-- Callout: looking for keyboardist -->
-    <div class="callout-banner reveal">
-      <div class="callout-icon">&#127929;</div>
-      <div class="callout-text" data-i18n="callout_keys"><strong>Nous recherchons un(e) claviériste !</strong> Vous êtes passionné(e) de Rock, Pop et Funk ? Contactez-nous.</div>
     </div>
 
     <!-- Former members -->
@@ -951,14 +929,13 @@ const T = {
     nav_videos: "Vidéos", nav_listen: "Écouter", nav_contact: "Contact",
     hero_sub: "Covers & compositions originales depuis 2019",
     hero_cta: "Écouter maintenant",
-    about_title: "Quatre musiciens,<br>une complicité",
+    about_title: "Cinq musiciens,<br>une complicité",
     about_p1: "ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.",
     about_p2: "Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.",
     about_p3: "Depuis 2019, le groupe a sorti six EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.",
     stat_musicians: "Musiciens", stat_since: "Depuis",
     members_title: "Le Line-up",
-    role_vocals: "Chant", role_lead_guitar: "Guitare lead", role_guitar: "Guitare", role_bass: "Basse", role_drums: "Batterie",
-    callout_keys: "<strong>Nous recherchons un(e) claviériste !</strong> Vous êtes passionné(e) de Rock, Pop et Funk ? Contactez-nous.",
+    role_vocals: "Chant", role_lead_guitar: "Guitare lead", role_keys: "Claviers", role_guitar: "Guitare", role_bass: "Basse", role_drums: "Batterie",
     former_title: "Anciens membres",
     disco_title: "Nos Albums",
     videos_title: "En images",
@@ -973,14 +950,13 @@ const T = {
     nav_videos: "Videos", nav_listen: "Listen", nav_contact: "Contact",
     hero_sub: "Covers & original compositions since 2019",
     hero_cta: "Listen now",
-    about_title: "Four musicians,<br>one bond",
+    about_title: "Five musicians,<br>one bond",
     about_p1: "ConnivAnce is a Rock/Pop/Funk band from the Île-de-France region, born in 2019 from the meeting of experienced musicians sharing a common passion for performing. The band takes its name from the exceptional chemistry that unites its members on stage and in the studio.",
     about_p2: "Their repertoire blends covers of legendary artists — David Bowie, Muse, Radiohead, INXS, Talking Heads, The Rolling Stones, Alain Bashung, Axel Bauer — with original compositions featuring a bold Rock sound and catchy melodies.",
     about_p3: "Since 2019, the band has released six original EPs, performed numerous live shows, and been featured on several web radio stations. Their onstage energy and infectious chemistry make them a must-see act on the Parisian Pop/Rock scene.",
     stat_musicians: "Musicians", stat_since: "Since",
     members_title: "The Line-up",
-    role_vocals: "Vocals", role_lead_guitar: "Lead Guitar", role_guitar: "Guitar", role_bass: "Bass", role_drums: "Drums",
-    callout_keys: "<strong>We're looking for a keyboardist!</strong> Passionate about Rock, Pop and Funk? Get in touch.",
+    role_vocals: "Vocals", role_lead_guitar: "Lead Guitar", role_keys: "Keys", role_guitar: "Guitar", role_bass: "Bass", role_drums: "Drums",
     former_title: "Former members",
     disco_title: "Our Albums",
     videos_title: "On screen",
@@ -995,14 +971,13 @@ const T = {
     nav_videos: "Video", nav_listen: "Ascolta", nav_contact: "Contatto",
     hero_sub: "Cover e composizioni originali dal 2019",
     hero_cta: "Ascolta ora",
-    about_title: "Quattro musicisti,<br>una complicità",
+    about_title: "Cinque musicisti,<br>una complicità",
     about_p1: "ConnivAnce è un gruppo Rock/Pop/Funk dell'Île-de-France, nato nel 2019 dall'incontro di musicisti esperti che condividono la stessa passione per il palco. Il gruppo prende il nome dall'intesa eccezionale che unisce i suoi membri sul palco e in studio.",
     about_p2: "Il loro repertorio mescola cover di grandi artisti — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composizioni originali dal suono Rock deciso e melodie orecchiabili.",
     about_p3: "Dal 2019, il gruppo ha pubblicato sei EP originali, suonato in numerosi concerti live ed è stato trasmesso su diverse web radio. La loro energia sul palco e la complicità contagiosa li rendono un gruppo imperdibile della scena Pop/Rock parigina.",
     stat_musicians: "Musicisti", stat_since: "Dal",
     members_title: "La Formazione",
-    role_vocals: "Voce", role_lead_guitar: "Chitarra solista", role_guitar: "Chitarra", role_bass: "Basso", role_drums: "Batteria",
-    callout_keys: "<strong>Cerchiamo un/una tastierista!</strong> Appassionato/a di Rock, Pop e Funk? Contattaci.",
+    role_vocals: "Voce", role_lead_guitar: "Chitarra solista", role_keys: "Tastiere", role_guitar: "Chitarra", role_bass: "Basso", role_drums: "Batteria",
     former_title: "Ex membri",
     disco_title: "I nostri Album",
     videos_title: "In video",
@@ -1017,14 +992,13 @@ const T = {
     nav_videos: "Videos", nav_listen: "Escuchar", nav_contact: "Contacto",
     hero_sub: "Covers y composiciones originales desde 2019",
     hero_cta: "Escuchar ahora",
-    about_title: "Cuatro músicos,<br>una complicidad",
+    about_title: "Cinco músicos,<br>una complicidad",
     about_p1: "ConnivAnce es un grupo de Rock/Pop/Funk de Île-de-France, nacido en 2019 del encuentro de músicos experimentados que comparten la misma pasión por el escenario. El grupo toma su nombre de la excepcional compenetración que une a sus miembros en el escenario y en el estudio.",
     about_p2: "Su repertorio mezcla versiones de grandes artistas — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composiciones originales de sonido Rock contundente y melodías pegadizas.",
     about_p3: "Desde 2019, el grupo ha lanzado seis EP originales, ha dado numerosos conciertos en vivo y ha sido transmitido en varias radios web. Su energía en el escenario y su complicidad contagiosa los convierten en un grupo imprescindible de la escena Pop/Rock parisina.",
     stat_musicians: "Músicos", stat_since: "Desde",
     members_title: "La Formación",
-    role_vocals: "Voz", role_lead_guitar: "Guitarra solista", role_guitar: "Guitarra", role_bass: "Bajo", role_drums: "Batería",
-    callout_keys: "<strong>¡Buscamos tecladista!</strong> ¿Apasionado/a del Rock, Pop y Funk? Contáctanos.",
+    role_vocals: "Voz", role_lead_guitar: "Guitarra solista", role_keys: "Teclados", role_guitar: "Guitarra", role_bass: "Bajo", role_drums: "Batería",
     former_title: "Antiguos miembros",
     disco_title: "Nuestros Álbumes",
     videos_title: "En pantalla",
@@ -1039,14 +1013,13 @@ const T = {
     nav_videos: "動画", nav_listen: "試聴", nav_contact: "お問い合わせ",
     hero_sub: "2019年からカバー＆オリジナル楽曲を演奏",
     hero_cta: "今すぐ聴く",
-    about_title: "4人のミュージシャン、<br>ひとつの絆",
+    about_title: "5人のミュージシャン、<br>ひとつの絆",
     about_p1: "ConnivAnceはイル＝ド＝フランス地域を拠点とするロック/ポップ/ファンクバンドで、2019年にステージへの共通の情熱を持つ経験豊富なミュージシャンたちの出会いから誕生しました。バンド名は、メンバーを結びつける卓越した一体感に由来しています。",
     about_p2: "レパートリーは、David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauerなどの偉大なアーティストのカバーと、力強いロックサウンドとキャッチーなメロディを持つオリジナル楽曲を融合しています。",
     about_p3: "2019年以来、6枚のオリジナルEPをリリースし、数多くのライブを行い、複数のウェブラジオで放送されています。ステージでのエネルギーと伝染する一体感が、パリのポップ/ロックシーンで見逃せないバンドとなっています。",
     stat_musicians: "ミュージシャン", stat_since: "結成",
     members_title: "ラインナップ",
-    role_vocals: "ボーカル", role_lead_guitar: "リードギター", role_guitar: "ギター", role_bass: "ベース", role_drums: "ドラム",
-    callout_keys: "<strong>キーボーディスト募集中！</strong>ロック、ポップ、ファンクに情熱のある方、ご連絡ください。",
+    role_vocals: "ボーカル", role_lead_guitar: "リードギター", role_keys: "キーボード", role_guitar: "ギター", role_bass: "ベース", role_drums: "ドラム",
     former_title: "元メンバー",
     disco_title: "アルバム",
     videos_title: "映像",
@@ -1061,14 +1034,13 @@ const T = {
     nav_videos: "视频", nav_listen: "在线收听", nav_contact: "联系我们",
     hero_sub: "自2019年起演绎翻唱与原创作品",
     hero_cta: "立即收听",
-    about_title: "四位音乐人，<br>一种默契",
+    about_title: "五位音乐人，<br>一种默契",
     about_p1: "ConnivAnce是一支来自法兰西岛大区的摇滚/流行/放克乐队，2019年由几位怀有共同舞台热情的资深音乐人组成。乐队名称源于成员之间在舞台和录音室中非凡的默契与和谐。",
     about_p2: "他们的曲目融合了David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauer等伟大艺术家的翻唱，以及具有鲜明摇滚风格和朗朗上口旋律的原创作品。",
     about_p3: "自2019年以来，乐队已发行六张原创EP，举办了众多现场演出，并在多家网络电台播出。他们在舞台上的能量和感染力使他们成为巴黎流行/摇滚界不可错过的乐队。",
     stat_musicians: "音乐人", stat_since: "成立于",
     members_title: "阵容",
-    role_vocals: "主唱", role_lead_guitar: "主音吉他", role_guitar: "吉他", role_bass: "贝斯", role_drums: "鼓",
-    callout_keys: "<strong>招募键盘手！</strong>热爱摇滚、流行和放克音乐？请联系我们。",
+    role_vocals: "主唱", role_lead_guitar: "主音吉他", role_keys: "键盘", role_guitar: "吉他", role_bass: "贝斯", role_drums: "鼓",
     former_title: "前成员",
     disco_title: "我们的专辑",
     videos_title: "精彩视频",
