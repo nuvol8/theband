@@ -1224,7 +1224,16 @@ const T = {
 };
 
 /* ===== Language switcher ===== */
-let currentLang = localStorage.getItem('connivance_lang') || 'fr';
+const supportedLangs = ['fr','en','it','es','ja','zh'];
+function detectBrowserLang() {
+  const langs = navigator.languages || [navigator.language || 'fr'];
+  for (const raw of langs) {
+    const code = raw.split('-')[0].toLowerCase();
+    if (supportedLangs.includes(code)) return code;
+  }
+  return 'fr';
+}
+let currentLang = localStorage.getItem('connivance_lang') || detectBrowserLang();
 
 function setLang(lang) {
   currentLang = lang;
