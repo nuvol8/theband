@@ -3,343 +3,1018 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connivance — Setlist 14 avril 2026</title>
+  <title>ConnivAnce — Rock / Pop / Funk</title>
+  <meta name="description" content="ConnivAnce — Groupe Rock, Pop, Funk. Covers et compositions originales.">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ========== VARIABLES ========== */
     :root {
-      --bg: #0e0e12;
-      --card: #18181f;
-      --accent: #e8a027;
-      --accent-dim: #b07818;
-      --text: #e8e6e1;
-      --muted: #8a8780;
-      --section-bg: #1f1f28;
-      --playing: #2a2520;
-      --border: #2a2a34;
+      --bg-deep:    #08080c;
+      --bg:         #0e0e14;
+      --bg-card:    #16161e;
+      --bg-card-h:  #1c1c26;
+      --accent:     #e8922a;
+      --accent-l:   #f0a84e;
+      --accent-d:   #c47018;
+      --red:        #c44030;
+      --text:       #eae8e3;
+      --text-dim:   #a8a49c;
+      --text-muted: #6a6660;
+      --border:     #252530;
+      --glass:      rgba(14,14,20,0.85);
+      --ff-display: 'Bebas Neue', sans-serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    /* ========== RESET ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 70px; }
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: var(--ff-body);
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-l); }
+    img { display: block; max-width: 100%; }
+
+    /* ========== NOISE OVERLAY ========== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    header {
-      text-align: center;
-      padding: 2.5rem 1rem 1.5rem;
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
+      transition: transform 0.3s;
     }
-
-    .logo {
-      width: 160px;
-      height: auto;
-      margin-bottom: 0.3rem;
-    }
-
-    header p {
-      margin-top: 0.4rem;
-      color: var(--muted);
-      font-size: 1rem;
-      letter-spacing: 0.04em;
-    }
-
-    .setlist {
-      max-width: 720px;
+    nav.hidden { transform: translateY(-100%); }
+    .nav-inner {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      height: 64px;
+    }
+    .nav-logo { height: 42px; }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* Language switcher */
+    .lang-switch {
+      display: flex;
+      gap: 0.3rem;
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--ff-body);
+    }
+    .lang-btn:hover { color: var(--text); border-color: var(--border); }
+    .lang-btn.active { color: var(--accent); border-color: var(--accent); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: 0.3s;
     }
 
-    .section-header {
-      background: var(--section-bg);
-      color: var(--accent);
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 40%, rgba(232,146,42,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(196,64,48,0.08) 0%, transparent 60%),
+        var(--bg-deep);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+    .hero-logo {
+      width: 240px;
+      margin: 0 auto 1.5rem;
+      animation: fadeUp 1s ease-out;
+      filter: drop-shadow(0 0 40px rgba(232,146,42,0.3));
+    }
+    .hero-tagline {
+      font-family: var(--ff-display);
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      letter-spacing: 0.15em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 1s ease-out 0.2s both;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      animation: fadeUp 1s ease-out 0.4s both;
+    }
+    .hero-cta {
+      margin-top: 2.5rem;
+      animation: fadeUp 1s ease-out 0.6s both;
+    }
+    .hero-cta a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg-deep);
       font-weight: 700;
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      padding: 0.6rem 1rem;
-      margin-top: 1.8rem;
-      margin-bottom: 0.3rem;
-      border-radius: 6px;
-    }
-
-    .song {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 0.6rem 0.8rem;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
+      padding: 0.85rem 2.5rem;
       border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta a:hover { background: var(--accent-l); transform: translateY(-2px); color: var(--bg-deep); }
+
+    /* Equalizer bars animation */
+    .eq-bars {
+      display: flex;
+      gap: 3px;
+      justify-content: center;
+      margin-top: 3rem;
+      animation: fadeUp 1s ease-out 0.8s both;
+    }
+    .eq-bar {
+      width: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: eqBounce 1s ease-in-out infinite alternate;
+    }
+    .eq-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+    .eq-bar:nth-child(2) { height: 35px; animation-delay: 0.15s; }
+    .eq-bar:nth-child(3) { height: 15px; animation-delay: 0.3s; }
+    .eq-bar:nth-child(4) { height: 45px; animation-delay: 0.1s; }
+    .eq-bar:nth-child(5) { height: 25px; animation-delay: 0.25s; }
+    .eq-bar:nth-child(6) { height: 40px; animation-delay: 0.05s; }
+    .eq-bar:nth-child(7) { height: 18px; animation-delay: 0.2s; }
+
+    @keyframes eqBounce {
+      0%   { transform: scaleY(0.3); opacity: 0.5; }
+      100% { transform: scaleY(1);   opacity: 1; }
     }
 
-    .song.playing {
-      background: var(--playing);
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: fadeUp 1s ease-out 1s both;
+    }
+    .scroll-hint span {
+      display: block;
+      width: 20px;
+      height: 32px;
+      border: 2px solid var(--text-muted);
+      border-radius: 10px;
+      position: relative;
+    }
+    .scroll-hint span::after {
+      content: '';
+      width: 3px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollDot 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0%, 100% { opacity: 1; top: 6px; }
+      50%      { opacity: 0.3; top: 18px; }
     }
 
-    .song-num {
-      color: var(--muted);
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--ff-display);
       font-size: 0.85rem;
-      min-width: 1.8rem;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--red));
+      border-radius: 2px;
+      margin-bottom: 2rem;
     }
 
-    .song-btn {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1rem;
-      text-align: left;
-      cursor: pointer;
-      padding: 0.4rem 0;
-      font-family: inherit;
+    /* Fade-in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== ABOUT ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+    }
+
+    /* ========== MEMBERS ========== */
+    .members-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
+    .members-inner { max-width: 1100px; margin: 0 auto; }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .member-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .member-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-d);
+    }
+    .member-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-d), var(--red));
+      color: var(--bg-deep);
+    }
+    .member-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .member-role {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .song-btn:hover { color: var(--accent); }
+    /* ========== DISCOGRAPHY ========== */
+    .disco-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .album-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .album-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-d);
+    }
+    .album-cover {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .album-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+    }
+    .album-card:nth-child(1) .album-cover { background: linear-gradient(135deg, #1a0a0a, #3a1515); }
+    .album-card:nth-child(2) .album-cover { background: linear-gradient(135deg, #0a0a1a, #151535); }
+    .album-card:nth-child(3) .album-cover { background: linear-gradient(135deg, #1a1a0a, #353515); }
+    .album-card:nth-child(4) .album-cover { background: linear-gradient(135deg, #0a1a0a, #153515); }
+    .album-card:nth-child(5) .album-cover { background: linear-gradient(135deg, #1a0a1a, #351535); }
+    .album-info { padding: 1rem; }
+    .album-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+    .album-year {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .album-type {
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-    .song-btn .play-icon {
+    /* ========== VIDEOS ========== */
+    .videos-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
+    .videos-inner { max-width: 1100px; margin: 0 auto; }
+    .video-placeholder {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+    .video-placeholder-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.4;
+    }
+
+    /* ========== LISTEN ========== */
+    .listen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .listen-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      color: var(--text);
+    }
+    .listen-card:hover {
+      border-color: var(--accent-d);
+      transform: translateY(-3px);
+      color: var(--text);
+    }
+    .listen-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 40px;
+      text-align: center;
+    }
+    .listen-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .listen-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-section { background: var(--bg-deep); max-width: 100%; padding: 5rem 1.5rem; }
+    .contact-inner { max-width: 1100px; margin: 0 auto; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .contact-info p {
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .contact-email {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .social-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: var(--accent);
-      color: var(--bg);
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      transition: background 0.2s, transform 0.15s;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+      font-size: 1.1rem;
     }
+    .social-link:hover { border-color: var(--accent); transform: translateY(-3px); }
 
-    .song-btn:hover .play-icon {
-      transform: scale(1.1);
-    }
-
-    .song.playing .play-icon {
-      background: var(--accent);
-      animation: pulse 1s ease-in-out infinite;
-    }
-
-    .song.no-click .play-icon {
-      background: var(--border);
-      color: var(--muted);
-    }
-
-    .song.no-click .song-btn { cursor: default; }
-    .song.no-click .song-btn:hover { color: var(--text); }
-    .song.no-click .song-btn:hover .play-icon { transform: none; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .song-title { font-weight: 500; }
-
-    .song-meta {
-      display: flex;
-      gap: 0.6rem;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .song-artist {
-      color: var(--muted);
-      font-size: 0.82rem;
-      max-width: 140px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .badge {
-      font-size: 0.72rem;
-      padding: 0.15rem 0.45rem;
-      border-radius: 3px;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .badge-key {
-      background: #1e2a1e;
-      color: #7ec87e;
-    }
-
-    .badge-bpm {
-      background: #2a1e1e;
-      color: #d4907a;
-    }
-
+    /* ========== FOOTER ========== */
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      color: var(--muted);
-      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    /* Mobile tweaks */
-    @media (max-width: 520px) {
-      header h1 { font-size: 1.5rem; }
-      .song { gap: 0.5rem; padding: 0.5rem; }
-      .song-artist { display: none; }
-      .song-btn { font-size: 0.92rem; }
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .members-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open .lang-switch {
+        border-left: none;
+        margin-left: 0;
+        padding-left: 0;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .hamburger { display: block; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-logo { width: 180px; }
+      section { padding: 3rem 1rem; }
+    }
+    @media (max-width: 400px) {
+      .members-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="img/logo.png" alt="Connivance" class="logo">
-  <p>Setlist — 14 avril 2026</p>
-</header>
+<!-- ========== NAV ========== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero"><img src="img/logo.png" alt="ConnivAnce" class="nav-logo"></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" data-i18n="nav_about">Le Groupe</a>
+      <a href="#members" data-i18n="nav_members">Membres</a>
+      <a href="#discography" data-i18n="nav_disco">Discographie</a>
+      <a href="#videos" data-i18n="nav_videos">Vidéos</a>
+      <a href="#listen" data-i18n="nav_listen">Écouter</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn" data-lang="zh">ZH</button>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-<main class="setlist" id="setlist"></main>
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img src="img/logo.png" alt="ConnivAnce" class="hero-logo">
+    <div class="hero-tagline">Rock &middot; Pop &middot; Funk</div>
+    <div class="hero-sub" data-i18n="hero_sub">Covers &amp; compositions originales depuis 2019</div>
+    <div class="hero-cta">
+      <a href="#listen" data-i18n="hero_cta">Écouter maintenant</a>
+    </div>
+    <div class="eq-bars">
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+      <div class="eq-bar"></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
 
+<!-- ========== ABOUT ========== -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label" data-i18n="nav_about">Le Groupe</div>
+    <h2 class="section-title" data-i18n="about_title">Cinq musiciens,<br>une complicité</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p data-i18n="about_p1">ConnivAnce est né en 2019 de la rencontre de cinq musiciens expérimentés partageant une même passion pour le Rock, le Pop et le Funk. Le groupe tire son nom de l'entente exceptionnelle qui unit ses membres sur scène comme en studio.</p>
+      <p data-i18n="about_p2">Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.</p>
+      <p data-i18n="about_p3">Depuis 2019, le groupe a sorti cinq EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">EP</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label" data-i18n="stat_musicians">Musiciens</div>
+      </div>
+      <div>
+        <div class="stat-num">'19</div>
+        <div class="stat-label" data-i18n="stat_since">Depuis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MEMBERS ========== -->
+<div class="members-section" id="members">
+  <div class="members-inner">
+    <div class="reveal">
+      <div class="section-label" data-i18n="nav_members">Membres</div>
+      <h2 class="section-title" data-i18n="members_title">Le Line-up</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="members-grid">
+      <div class="member-card reveal">
+        <div class="member-avatar">B</div>
+        <div class="member-name">Benjamin Muller</div>
+        <div class="member-role" data-i18n="role_vocals">Chant</div>
+      </div>
+      <div class="member-card reveal">
+        <div class="member-avatar">P</div>
+        <div class="member-name">Pascal Robert</div>
+        <div class="member-role" data-i18n="role_guitar">Guitare</div>
+      </div>
+      <div class="member-card reveal">
+        <div class="member-avatar">C</div>
+        <div class="member-name">Claude Brotons</div>
+        <div class="member-role" data-i18n="role_guitar">Guitare</div>
+      </div>
+      <div class="member-card reveal">
+        <div class="member-avatar">A</div>
+        <div class="member-name">Angelo Corsaro</div>
+        <div class="member-role" data-i18n="role_bass">Basse</div>
+      </div>
+      <div class="member-card reveal">
+        <div class="member-avatar">D</div>
+        <div class="member-name">Didier Saadaoui</div>
+        <div class="member-role" data-i18n="role_drums">Batterie</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== DISCOGRAPHY ========== -->
+<section id="discography">
+  <div class="reveal">
+    <div class="section-label" data-i18n="nav_disco">Discographie</div>
+    <h2 class="section-title" data-i18n="disco_title">Nos Albums</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="disco-grid">
+    <div class="album-card reveal">
+      <div class="album-cover">Dancing<br>With The<br>Devil</div>
+      <div class="album-info">
+        <div class="album-title">Dancing With The Devil</div>
+        <div class="album-year">2019</div>
+        <div class="album-type">EP1</div>
+      </div>
+    </div>
+    <div class="album-card reveal">
+      <div class="album-cover">The Dark<br>&amp; The<br>Light</div>
+      <div class="album-info">
+        <div class="album-title">The Dark And The Light</div>
+        <div class="album-year">2020</div>
+        <div class="album-type">EP2</div>
+      </div>
+    </div>
+    <div class="album-card reveal">
+      <div class="album-cover">Never<br>Too Old<br>To Rock</div>
+      <div class="album-info">
+        <div class="album-title">Never Too Old To Rock</div>
+        <div class="album-year">2021</div>
+        <div class="album-type">EP3</div>
+      </div>
+    </div>
+    <div class="album-card reveal">
+      <div class="album-cover">Last<br>Call</div>
+      <div class="album-info">
+        <div class="album-title">Last Call</div>
+        <div class="album-year">2022</div>
+        <div class="album-type">EP4</div>
+      </div>
+    </div>
+    <div class="album-card reveal">
+      <div class="album-cover">Jump Into<br>The Lion's<br>Den</div>
+      <div class="album-info">
+        <div class="album-title">Jump Into The Lion's Den</div>
+        <div class="album-year">2024</div>
+        <div class="album-type">EP5</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VIDEOS ========== -->
+<div class="videos-section" id="videos">
+  <div class="videos-inner">
+    <div class="reveal">
+      <div class="section-label" data-i18n="nav_videos">Vidéos</div>
+      <h2 class="section-title" data-i18n="videos_title">En images</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="video-placeholder reveal">
+      <div class="video-placeholder-icon">&#9654;</div>
+      <p data-i18n="videos_coming">Vidéos à venir — Restez connectés !</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LISTEN ========== -->
+<section id="listen">
+  <div class="reveal">
+    <div class="section-label" data-i18n="nav_listen">Écouter</div>
+    <h2 class="section-title" data-i18n="listen_title">Retrouvez-nous partout</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="listen-grid">
+    <a href="https://open.spotify.com/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#9835;</div>
+      <div><div class="listen-name">Spotify</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
+    </a>
+    <a href="https://music.apple.com/us/artist/connivance/1477895789" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#9835;</div>
+      <div><div class="listen-name">Apple Music</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
+    </a>
+    <a href="https://soundcloud.com/connivance-2021/tracks" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#9835;</div>
+      <div><div class="listen-name">SoundCloud</div><div class="listen-sub" data-i18n="listen_stream">Streaming</div></div>
+    </a>
+    <a href="https://www.facebook.com/p/ConnivAnce-100063713343016/" target="_blank" rel="noopener" class="listen-card reveal">
+      <div class="listen-icon">&#9834;</div>
+      <div><div class="listen-name">Facebook</div><div class="listen-sub" data-i18n="listen_social">Réseau social</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label" data-i18n="nav_contact">Contact</div>
+      <h2 class="section-title" data-i18n="contact_title">Parlons musique</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p data-i18n="contact_p1">Pour toute demande de booking, collaboration ou simplement pour dire bonjour, n'hésitez pas à nous contacter.</p>
+        <a href="mailto:fovizeo@gmail.com" class="contact-email">fovizeo@gmail.com</a>
+        <div class="social-links">
+          <a href="https://www.facebook.com/p/ConnivAnce-100063713343016/" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
+          <a href="https://soundcloud.com/connivance-2021/tracks" target="_blank" rel="noopener" class="social-link" title="SoundCloud">S</a>
+          <a href="https://open.spotify.com/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="social-link" title="Spotify">&#9835;</a>
+        </div>
+      </div>
+      <div class="reveal" style="color: var(--text-dim); font-size: 0.9rem;">
+        <p data-i18n="contact_p2">ConnivAnce est basé en Île-de-France et se produit en concerts dans toute la région parisienne et au-delà.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
 <footer>
-  Click any song to hear a 2-bar count-in at tempo.
+  <p>&copy; 2025 ConnivAnce. <span data-i18n="footer_rights">Tous droits réservés.</span></p>
 </footer>
 
+<!-- ========== JAVASCRIPT ========== -->
 <script>
-const setlist = [
-  { section: "Première partie" },
-  { n: 1,  title: "Wish You Were Here",             artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 2,  title: "Personal Jesus",                  artist: "Depeche Mode",            key: "B",   bpm: 130,  file: "clicks/02-Personal_Jesus.mp3" },
-  { n: 3,  title: "Come Together",                    artist: "The Beatles",             key: "Cm",  bpm: 83,   file: "clicks/03-Come_Together.mp3" },
-  { n: 4,  title: "Last Call",                        artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 5,  title: "Quand t'es dans le désert",       artist: "J.-P. Capdevielle",       key: "Gm",  bpm: 155,  file: "clicks/05-Quand_tes_dans_le_désert.mp3" },
-  { n: 6,  title: "Creep",                            artist: "Radiohead",               key: "G",   bpm: 92,   file: "clicks/06-Creep.mp3" },
-  { n: 7,  title: "When I Was Your Man",              artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 8,  title: "Need You Tonight",                 artist: "INXS",                    key: "B♭m", bpm: 109,  file: "clicks/08-Need_You_Tonight.mp3" },
-  { n: 9,  title: "Blame It On The Boogie",           artist: "The Jacksons",            key: "A♭",  bpm: 113,  file: "clicks/09-Blame_It_On_The_Boogie.mp3" },
-  { n: 10, title: "When You Are Gone",                artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 11, title: "Californication",                   artist: "RHCP",                    key: "Fm",  bpm: 96,   file: "clicks/11-Californication.mp3" },
-  { n: 12, title: "Love Me Two Times",                artist: "The Doors",               key: "E",   bpm: 133,  file: "clicks/12-Love_Me_Two_Times.mp3" },
-  { n: 13, title: "Air",                               artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 14, title: "Feeling Good",                      artist: "Muse",                    key: "Fm",  bpm: 109,  file: "clicks/14-Feeling_Good.mp3" },
-  { n: 15, title: "Sweet Dreams Are Made Of This",    artist: "Marilyn Manson",          key: "Cm",  bpm: 92,   file: "clicks/15-Sweet_Dreams_Are_Made_Of_This.mp3" },
-
-  { section: "Deuxième partie" },
-  { n: 16, title: "Mathilde",                          artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 17, title: "Beds Are Burning",                  artist: "Midnight Oil",            key: "C",   bpm: 119,  file: "clicks/17-Beds_Are_Burning.mp3" },
-  { n: 18, title: "Miss You",                          artist: "Rolling Stones",          key: "Am",  bpm: 110,  file: "clicks/18-Miss_You.mp3" },
-  { n: 19, title: "Foolish Lame",                      artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 20, title: "Mustang Sally",                     artist: "Wilson Pickett",          key: "A",   bpm: 110,  file: "clicks/20-Mustang_Sally.mp3" },
-  { n: 21, title: "Éteins la Lumière",                artist: "Axel Bauer",              key: "Am",  bpm: 145,  file: "clicks/21-Eteins_la_Lumière.mp3" },
-  { n: 22, title: "Jump Into The Lion's Den",         artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 23, title: "Psycho Killer",                     artist: "Talking Heads",           key: "A",   bpm: 123,  file: "clicks/23-Psycho_Killer.mp3" },
-  { n: 24, title: "Blue Suede Shoes",                  artist: "Elvis Presley",           key: "A",   bpm: 190,  file: "clicks/24-Blue_Suede_Shoes.mp3" },
-  { n: 25, title: "Connivance",                        artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 26, title: "Gaby Oh Gaby",                      artist: "Alain Bashung",           key: "E",   bpm: 156,  file: "clicks/26-Gaby_Oh_Gaby.mp3" },
-  { n: 27, title: "The Passenger",                     artist: "Iggy Pop",                key: "Am",  bpm: 135,  file: "clicks/27-The_Passenger.mp3" },
-  { n: 28, title: "Sunday Groove",                     artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 29, title: "Let's Dance",                       artist: "David Bowie",             key: "A♭",  bpm: 116,  file: "clicks/29-Lets_Dance.mp3" },
-  { n: 30, title: "Hound Dog",                         artist: "Elvis Presley",           key: "C",   bpm: 176,  file: "clicks/30-Hound_Dog.mp3" },
-
-  { section: "Rappels" },
-  { n: 31, title: "Uprising",                          artist: "Muse",                    key: "Bm",  bpm: 128,  file: "clicks/31-Uprising.mp3" },
-];
-
-let currentAudio = null;
-let currentRow = null;
-
-function playSong(file, row) {
-  // Stop if same song clicked again
-  if (currentAudio && currentRow === row) {
-    currentAudio.pause();
-    currentAudio = null;
-    row.classList.remove("playing");
-    currentRow = null;
-    return;
+/* ===== Translations ===== */
+const T = {
+  fr: {
+    nav_about: "Le Groupe", nav_members: "Membres", nav_disco: "Discographie",
+    nav_videos: "Vidéos", nav_listen: "Écouter", nav_contact: "Contact",
+    hero_sub: "Covers & compositions originales depuis 2019",
+    hero_cta: "Écouter maintenant",
+    about_title: "Cinq musiciens,<br>une complicité",
+    about_p1: "ConnivAnce est né en 2019 de la rencontre de cinq musiciens expérimentés partageant une même passion pour le Rock, le Pop et le Funk. Le groupe tire son nom de l'entente exceptionnelle qui unit ses membres sur scène comme en studio.",
+    about_p2: "Leur répertoire mêle des reprises de grands artistes — David Bowie, Muse, Radiohead, INXS, Talking Heads, les Rolling Stones, Alain Bashung, Axel Bauer — à des compositions originales au son Rock affirmé et aux mélodies accrocheuses.",
+    about_p3: "Depuis 2019, le groupe a sorti cinq EP originaux, joué de nombreux concerts live et a été diffusé sur plusieurs web radios. Leur énergie sur scène et leur complicité communicative en font un groupe incontournable de la scène Pop/Rock francilienne.",
+    stat_musicians: "Musiciens", stat_since: "Depuis",
+    members_title: "Le Line-up",
+    role_vocals: "Chant", role_guitar: "Guitare", role_bass: "Basse", role_drums: "Batterie",
+    disco_title: "Nos Albums",
+    videos_title: "En images", videos_coming: "Vidéos à venir — Restez connectés !",
+    listen_title: "Retrouvez-nous partout", listen_stream: "Streaming", listen_social: "Réseau social",
+    contact_title: "Parlons musique",
+    contact_p1: "Pour toute demande de booking, collaboration ou simplement pour dire bonjour, n'hésitez pas à nous contacter.",
+    contact_p2: "ConnivAnce est basé en Île-de-France et se produit en concerts dans toute la région parisienne et au-delà.",
+    footer_rights: "Tous droits réservés."
+  },
+  en: {
+    nav_about: "The Band", nav_members: "Members", nav_disco: "Discography",
+    nav_videos: "Videos", nav_listen: "Listen", nav_contact: "Contact",
+    hero_sub: "Covers & original compositions since 2019",
+    hero_cta: "Listen now",
+    about_title: "Five musicians,<br>one bond",
+    about_p1: "ConnivAnce was born in 2019 from the meeting of five experienced musicians sharing a common passion for Rock, Pop, and Funk. The band takes its name from the exceptional chemistry that unites its members on stage and in the studio.",
+    about_p2: "Their repertoire blends covers of legendary artists — David Bowie, Muse, Radiohead, INXS, Talking Heads, The Rolling Stones, Alain Bashung, Axel Bauer — with original compositions featuring a bold Rock sound and catchy melodies.",
+    about_p3: "Since 2019, the band has released five original EPs, performed numerous live shows, and been featured on several web radio stations. Their onstage energy and infectious chemistry make them a must-see act on the Parisian Pop/Rock scene.",
+    stat_musicians: "Musicians", stat_since: "Since",
+    members_title: "The Line-up",
+    role_vocals: "Vocals", role_guitar: "Guitar", role_bass: "Bass", role_drums: "Drums",
+    disco_title: "Our Albums",
+    videos_title: "On screen", videos_coming: "Videos coming soon — Stay tuned!",
+    listen_title: "Find us everywhere", listen_stream: "Streaming", listen_social: "Social",
+    contact_title: "Let's talk music",
+    contact_p1: "For booking inquiries, collaborations, or just to say hello, don't hesitate to get in touch.",
+    contact_p2: "ConnivAnce is based in the Île-de-France region and performs live across the greater Paris area and beyond.",
+    footer_rights: "All rights reserved."
+  },
+  it: {
+    nav_about: "Il Gruppo", nav_members: "Membri", nav_disco: "Discografia",
+    nav_videos: "Video", nav_listen: "Ascolta", nav_contact: "Contatto",
+    hero_sub: "Cover e composizioni originali dal 2019",
+    hero_cta: "Ascolta ora",
+    about_title: "Cinque musicisti,<br>una complicità",
+    about_p1: "ConnivAnce è nato nel 2019 dall'incontro di cinque musicisti esperti che condividono la stessa passione per il Rock, il Pop e il Funk. Il gruppo prende il nome dall'intesa eccezionale che unisce i suoi membri sul palco e in studio.",
+    about_p2: "Il loro repertorio mescola cover di grandi artisti — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composizioni originali dal suono Rock deciso e melodie orecchiabili.",
+    about_p3: "Dal 2019, il gruppo ha pubblicato cinque EP originali, suonato in numerosi concerti live ed è stato trasmesso su diverse web radio. La loro energia sul palco e la complicità contagiosa li rendono un gruppo imperdibile della scena Pop/Rock parigina.",
+    stat_musicians: "Musicisti", stat_since: "Dal",
+    members_title: "La Formazione",
+    role_vocals: "Voce", role_guitar: "Chitarra", role_bass: "Basso", role_drums: "Batteria",
+    disco_title: "I nostri Album",
+    videos_title: "In video", videos_coming: "Video in arrivo — Restate connessi!",
+    listen_title: "Trovateci ovunque", listen_stream: "Streaming", listen_social: "Social",
+    contact_title: "Parliamo di musica",
+    contact_p1: "Per richieste di booking, collaborazioni o semplicemente per salutarci, non esitate a contattarci.",
+    contact_p2: "ConnivAnce ha sede nell'Île-de-France e si esibisce in concerti in tutta la regione parigina e oltre.",
+    footer_rights: "Tutti i diritti riservati."
+  },
+  es: {
+    nav_about: "El Grupo", nav_members: "Miembros", nav_disco: "Discografía",
+    nav_videos: "Videos", nav_listen: "Escuchar", nav_contact: "Contacto",
+    hero_sub: "Covers y composiciones originales desde 2019",
+    hero_cta: "Escuchar ahora",
+    about_title: "Cinco músicos,<br>una complicidad",
+    about_p1: "ConnivAnce nació en 2019 del encuentro de cinco músicos experimentados que comparten la misma pasión por el Rock, el Pop y el Funk. El grupo toma su nombre de la excepcional compenetración que une a sus miembros en el escenario y en el estudio.",
+    about_p2: "Su repertorio mezcla versiones de grandes artistas — David Bowie, Muse, Radiohead, INXS, Talking Heads, Rolling Stones, Alain Bashung, Axel Bauer — con composiciones originales de sonido Rock contundente y melodías pegadizas.",
+    about_p3: "Desde 2019, el grupo ha lanzado cinco EP originales, ha dado numerosos conciertos en vivo y ha sido transmitido en varias radios web. Su energía en el escenario y su complicidad contagiosa los convierten en un grupo imprescindible de la escena Pop/Rock parisina.",
+    stat_musicians: "Músicos", stat_since: "Desde",
+    members_title: "La Formación",
+    role_vocals: "Voz", role_guitar: "Guitarra", role_bass: "Bajo", role_drums: "Batería",
+    disco_title: "Nuestros Álbumes",
+    videos_title: "En pantalla", videos_coming: "Videos próximamente — ¡Mantente conectado!",
+    listen_title: "Encuéntranos en todas partes", listen_stream: "Streaming", listen_social: "Red social",
+    contact_title: "Hablemos de música",
+    contact_p1: "Para solicitudes de contratación, colaboraciones o simplemente para saludar, no dudes en contactarnos.",
+    contact_p2: "ConnivAnce tiene su sede en Île-de-France y actúa en conciertos en toda la región parisina y más allá.",
+    footer_rights: "Todos los derechos reservados."
+  },
+  ja: {
+    nav_about: "バンド紹介", nav_members: "メンバー", nav_disco: "ディスコグラフィー",
+    nav_videos: "動画", nav_listen: "試聴", nav_contact: "お問い合わせ",
+    hero_sub: "2019年からカバー＆オリジナル楽曲を演奏",
+    hero_cta: "今すぐ聴く",
+    about_title: "5人のミュージシャン、<br>ひとつの絆",
+    about_p1: "ConnivAnceは2019年、ロック、ポップ、ファンクへの共通の情熱を持つ5人の経験豊富なミュージシャンの出会いから誕生しました。バンド名は、ステージでもスタジオでもメンバーを結びつける卓越した一体感に由来しています。",
+    about_p2: "レパートリーは、David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauerなどの偉大なアーティストのカバーと、力強いロックサウンドとキャッチーなメロディを持つオリジナル楽曲を融合しています。",
+    about_p3: "2019年以来、5枚のオリジナルEPをリリースし、数多くのライブを行い、複数のウェブラジオで放送されています。ステージでのエネルギーと伝染する一体感が、パリのポップ/ロックシーンで見逃せないバンドとなっています。",
+    stat_musicians: "ミュージシャン", stat_since: "結成",
+    members_title: "ラインナップ",
+    role_vocals: "ボーカル", role_guitar: "ギター", role_bass: "ベース", role_drums: "ドラム",
+    disco_title: "アルバム",
+    videos_title: "映像", videos_coming: "動画は近日公開 — お楽しみに！",
+    listen_title: "各プラットフォームで配信中", listen_stream: "ストリーミング", listen_social: "SNS",
+    contact_title: "音楽の話をしましょう",
+    contact_p1: "ブッキングのご依頼、コラボレーション、またはお気軽にご連絡ください。",
+    contact_p2: "ConnivAnceはイル＝ド＝フランス地域を拠点に、パリ近郊を中心にライブ活動を行っています。",
+    footer_rights: "全著作権所有。"
+  },
+  zh: {
+    nav_about: "乐队介绍", nav_members: "成员", nav_disco: "唱片",
+    nav_videos: "视频", nav_listen: "在线收听", nav_contact: "联系我们",
+    hero_sub: "自2019年起演绎翻唱与原创作品",
+    hero_cta: "立即收听",
+    about_title: "五位音乐人，<br>一种默契",
+    about_p1: "ConnivAnce诞生于2019年，由五位对摇滚、流行和放克音乐怀有共同热情的资深音乐人组成。乐队名称源于成员之间在舞台和录音室中非凡的默契与和谐。",
+    about_p2: "他们的曲目融合了David Bowie、Muse、Radiohead、INXS、Talking Heads、Rolling Stones、Alain Bashung、Axel Bauer等伟大艺术家的翻唱，以及具有鲜明摇滚风格和朗朗上口旋律的原创作品。",
+    about_p3: "自2019年以来，乐队已发行五张原创EP，举办了众多现场演出，并在多家网络电台播出。他们在舞台上的能量和感染力使他们成为巴黎流行/摇滚界不可错过的乐队。",
+    stat_musicians: "音乐人", stat_since: "成立于",
+    members_title: "阵容",
+    role_vocals: "主唱", role_guitar: "吉他", role_bass: "贝斯", role_drums: "鼓",
+    disco_title: "我们的专辑",
+    videos_title: "精彩视频", videos_coming: "视频即将上线——敬请期待！",
+    listen_title: "在各平台收听", listen_stream: "流媒体", listen_social: "社交媒体",
+    contact_title: "聊聊音乐",
+    contact_p1: "如有演出预约、合作意向或只是想打个招呼，请随时联系我们。",
+    contact_p2: "ConnivAnce位于法兰西岛大区，在巴黎地区及周边进行现场演出。",
+    footer_rights: "版权所有。"
   }
+};
 
-  // Stop previous
-  if (currentAudio) {
-    currentAudio.pause();
-    if (currentRow) currentRow.classList.remove("playing");
-  }
+/* ===== Language switcher ===== */
+let currentLang = localStorage.getItem('connivance_lang') || 'fr';
 
-  currentAudio = new Audio(file);
-  currentRow = row;
-  row.classList.add("playing");
-
-  currentAudio.play();
-  currentAudio.addEventListener("ended", () => {
-    row.classList.remove("playing");
-    currentAudio = null;
-    currentRow = null;
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('connivance_lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) {
+      el.innerHTML = T[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
   });
 }
 
-const container = document.getElementById("setlist");
-
-setlist.forEach(item => {
-  if (item.section) {
-    const div = document.createElement("div");
-    div.className = "section-header";
-    div.textContent = item.section;
-    container.appendChild(div);
-    return;
-  }
-
-  const row = document.createElement("div");
-  row.className = "song" + (item.file ? "" : " no-click");
-
-  const num = document.createElement("span");
-  num.className = "song-num";
-  num.textContent = item.n;
-
-  const btn = document.createElement("button");
-  btn.className = "song-btn";
-
-  const icon = document.createElement("span");
-  icon.className = "play-icon";
-  icon.textContent = item.file ? "▶" : "—";
-
-  const titleSpan = document.createElement("span");
-  titleSpan.className = "song-title";
-  titleSpan.textContent = item.title;
-
-  btn.appendChild(icon);
-  btn.appendChild(titleSpan);
-
-  if (item.file) {
-    btn.addEventListener("click", () => playSong(item.file, row));
-  }
-
-  const meta = document.createElement("div");
-  meta.className = "song-meta";
-
-  const artist = document.createElement("span");
-  artist.className = "song-artist";
-  artist.textContent = item.artist;
-  meta.appendChild(artist);
-
-  if (item.key) {
-    const k = document.createElement("span");
-    k.className = "badge badge-key";
-    k.textContent = item.key;
-    meta.appendChild(k);
-  }
-  if (item.bpm) {
-    const b = document.createElement("span");
-    b.className = "badge badge-bpm";
-    b.textContent = item.bpm + " bpm";
-    meta.appendChild(b);
-  }
-
-  row.appendChild(num);
-  row.appendChild(btn);
-  row.appendChild(meta);
-  container.appendChild(row);
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.dataset.lang));
 });
+setLang(currentLang);
+
+/* ===== Hamburger ===== */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+/* ===== Navbar hide on scroll ===== */
+let lastScroll = 0;
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  if (st > 100 && st > lastScroll) {
+    navbar.classList.add('hidden');
+  } else {
+    navbar.classList.remove('hidden');
+  }
+  lastScroll = st;
+}, { passive: true });
+
+/* ===== Reveal on scroll ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ===== Active nav link ===== */
+const sections = document.querySelectorAll('section, [id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (s.id && s.offsetTop - 120 <= window.scrollY) {
+      current = s.id;
+    }
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
 </script>
 
 </body>
