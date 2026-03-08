@@ -153,8 +153,7 @@
     }
     .hero-logo {
       width: 320px;
-      margin: 0 auto 1.5rem;
-      animation: fadeUp 1s ease-out;
+      display: block;
       filter: drop-shadow(0 0 40px rgba(232,146,42,0.3));
     }
     .hero-tagline {
@@ -190,31 +189,126 @@
     }
     .hero-cta a:hover { background: var(--accent-l); transform: translateY(-2px); color: var(--bg-deep); }
 
-    /* Equalizer bars animation */
-    .eq-bars {
-      display: flex;
-      gap: 3px;
-      justify-content: center;
-      margin-top: 3rem;
+    /* Hero social strip */
+    .hero-social {
+      margin-top: 2.5rem;
       animation: fadeUp 1s ease-out 0.8s both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
     }
-    .eq-bar {
-      width: 4px;
-      background: var(--accent);
-      border-radius: 2px;
-      animation: eqBounce 1s ease-in-out infinite alternate;
+    .hero-social-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-    .eq-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
-    .eq-bar:nth-child(2) { height: 35px; animation-delay: 0.15s; }
-    .eq-bar:nth-child(3) { height: 15px; animation-delay: 0.3s; }
-    .eq-bar:nth-child(4) { height: 45px; animation-delay: 0.1s; }
-    .eq-bar:nth-child(5) { height: 25px; animation-delay: 0.25s; }
-    .eq-bar:nth-child(6) { height: 40px; animation-delay: 0.05s; }
-    .eq-bar:nth-child(7) { height: 18px; animation-delay: 0.2s; }
+    .hero-social-label::before,
+    .hero-social-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border));
+    }
+    .hero-social-label::after {
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+    .hero-social-icons {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .hero-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+      transition: fill 0.3s, transform 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-social-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .hero-social-btn:hover {
+      border-color: transparent;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .hero-social-btn:hover svg { fill: #fff; transform: scale(1.1); }
+    .hero-social-btn:hover::before { opacity: 1; }
+    /* Platform brand colors */
+    .hero-social-btn--ig::before { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .hero-social-btn--fb::before { background: #1877f2; }
+    .hero-social-btn--yt::before { background: #ff0000; }
+    .hero-social-btn--sp::before { background: #1db954; }
 
-    @keyframes eqBounce {
-      0%   { transform: scaleY(0.3); opacity: 0.5; }
-      100% { transform: scaleY(1);   opacity: 1; }
+    /* Animated logo glow */
+    .hero-logo-wrap {
+      position: relative;
+      display: inline-block;
+      animation: fadeUp 1s ease-out;
+    }
+    .hero-logo-wrap::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,146,42,0.2) 0%, transparent 70%);
+      animation: logoPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes logoPulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+    }
+
+    /* Floating particles */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat linear infinite;
+    }
+    @keyframes particleFloat {
+      0%   { opacity: 0; transform: translateY(0) scale(0); }
+      10%  { opacity: 0.6; transform: scale(1); }
+      90%  { opacity: 0.2; }
+      100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
     }
 
     /* Scroll indicator */
@@ -430,22 +524,19 @@
       letter-spacing: 0.05em;
       color: var(--text);
       text-align: center;
-      padding: 1rem;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, #0a0a1a, #151535);
     }
-    .album-cover::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.15;
+    .album-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .album-card:nth-child(1) .album-cover { background: linear-gradient(135deg, #1a0a0a, #3a1515); }
-    .album-card:nth-child(2) .album-cover { background: linear-gradient(135deg, #0a0a1a, #151535); }
-    .album-card:nth-child(3) .album-cover { background: linear-gradient(135deg, #1a1a0a, #353515); }
-    .album-card:nth-child(4) .album-cover { background: linear-gradient(135deg, #0a1a0a, #153515); }
-    .album-card:nth-child(5) .album-cover { background: linear-gradient(135deg, #1a0a1a, #351535); }
-    .album-card:nth-child(6) .album-cover { background: linear-gradient(135deg, #0a1a1a, #153535); }
+    .album-cover--placeholder {
+      padding: 1rem;
+    }
     .album-info { padding: 1rem; }
     .album-title {
       font-weight: 600;
@@ -586,19 +677,27 @@
 
     /* ========== NEXT GIG BANNER ========== */
     .next-gig {
-      background: linear-gradient(135deg, rgba(232,146,42,0.15), rgba(196,64,48,0.1));
-      border: 1px solid var(--accent-d);
-      border-radius: 10px;
-      padding: 1.2rem 2rem;
+      background: linear-gradient(135deg, rgba(232,146,42,0.1), rgba(196,64,48,0.06));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(232,146,42,0.25);
+      border-radius: 12px;
+      padding: 1rem 1.8rem;
       margin-top: 2rem;
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      animation: fadeUp 1s ease-out 0.9s both;
-      max-width: 600px;
+      animation: fadeUp 1s ease-out 1s both;
+      max-width: 520px;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .next-gig:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
     .next-gig-icon {
       font-size: 2rem;
@@ -738,8 +837,11 @@
       }
       .hamburger { display: block; }
       .members-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-logo { width: 220px; }
-      .next-gig { flex-direction: column; text-align: center; padding: 1rem; }
+      .hero-logo { width: 240px; }
+      .hero-logo-wrap { margin-bottom: 1rem; }
+      .hero-social-btn { width: 48px; height: 48px; }
+      .hero-social-icons { gap: 0.8rem; }
+      .next-gig { flex-direction: column; text-align: center; padding: 1rem; gap: 0.8rem; }
       .next-gig-info { text-align: center; }
       .next-gig-cta { margin-left: 0; }
       section { padding: 3rem 1rem; }
@@ -781,21 +883,32 @@
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-particles" id="heroParticles"></div>
   <div class="hero-content">
-    <img src="img/logo.png" alt="ConnivAnce" class="hero-logo">
+    <div class="hero-logo-wrap">
+      <img src="img/logo.png" alt="ConnivAnce" class="hero-logo">
+    </div>
     <div class="hero-tagline">Rock &middot; Pop &middot; Funk</div>
     <div class="hero-sub" data-i18n="hero_sub">Covers &amp; compositions originales depuis 2019</div>
     <div class="hero-cta">
       <a href="#listen" data-i18n="hero_cta">Écouter maintenant</a>
     </div>
-    <div class="eq-bars">
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
-      <div class="eq-bar"></div>
+    <div class="hero-social">
+      <div class="hero-social-label" data-i18n="hero_follow">Suivez-nous</div>
+      <div class="hero-social-icons">
+        <a href="https://www.instagram.com/connivancetheband/" target="_blank" rel="noopener" class="hero-social-btn hero-social-btn--ig" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100063713343016" target="_blank" rel="noopener" class="hero-social-btn hero-social-btn--fb" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCPPp885YZ3zLaljdnd_dA8w" target="_blank" rel="noopener" class="hero-social-btn hero-social-btn--yt" title="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://open.spotify.com/intl-fr/artist/0NHTZqabFV1H8A8vo1DZch" target="_blank" rel="noopener" class="hero-social-btn hero-social-btn--sp" title="Spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+      </div>
     </div>
     <a href="#concerts" class="next-gig">
       <div class="next-gig-icon">&#127928;</div>
@@ -919,54 +1032,54 @@
     <div class="section-divider"></div>
   </div>
   <div class="disco-grid">
-    <div class="album-card reveal">
-      <div class="album-cover">ConnivAnce</div>
+    <a class="album-card reveal" href="https://open.spotify.com/album/09krQP7CVX08lY1lGWxmlZ" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="album-cover"><img src="https://i.scdn.co/image/ab67616d0000b27337aac5a0c4aa342c7108d690" alt="VI" loading="lazy"></div>
       <div class="album-info">
-        <div class="album-title">ConnivAnce</div>
-        <div class="album-year">2019</div>
-        <div class="album-type">EP1</div>
+        <div class="album-title">VI</div>
+        <div class="album-year">2025</div>
+        <div class="album-type">EP6</div>
       </div>
-    </div>
+    </a>
+    <a class="album-card reveal" href="https://open.spotify.com/album/12jyOI95DR0fQCDIRCOBf3" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="album-cover"><img src="https://i.scdn.co/image/ab67616d0000b27381f7930bbd1dae1f0a40d214" alt="Jump Into The Lion's Den" loading="lazy"></div>
+      <div class="album-info">
+        <div class="album-title">Jump Into The Lion's Den</div>
+        <div class="album-year">2024</div>
+        <div class="album-type">EP5</div>
+      </div>
+    </a>
+    <a class="album-card reveal" href="https://open.spotify.com/album/6x94tB9DFTiRGRj0Kpv12C" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="album-cover"><img src="https://i.scdn.co/image/ab67616d0000b273b876b1aa8ff1ca21c5906d24" alt="Last Call" loading="lazy"></div>
+      <div class="album-info">
+        <div class="album-title">Last Call</div>
+        <div class="album-year">2022</div>
+        <div class="album-type">EP4</div>
+      </div>
+    </a>
+    <a class="album-card reveal" href="https://open.spotify.com/album/1qQMzsiJRfTUesdIb8E3C3" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="album-cover"><img src="https://i.scdn.co/image/ab67616d0000b273ffc218fc4a591a1063461cc4" alt="Never Too Old To Rock" loading="lazy"></div>
+      <div class="album-info">
+        <div class="album-title">Never Too Old To Rock</div>
+        <div class="album-year">2021</div>
+        <div class="album-type">EP3</div>
+      </div>
+    </a>
     <div class="album-card reveal">
-      <div class="album-cover">The Dark<br>&amp; The<br>Light</div>
+      <div class="album-cover album-cover--placeholder">The Dark<br>&amp; The<br>Light</div>
       <div class="album-info">
         <div class="album-title">The Dark And The Light</div>
         <div class="album-year">2020</div>
         <div class="album-type">EP2</div>
       </div>
     </div>
-    <div class="album-card reveal">
-      <div class="album-cover">Never<br>Too Old<br>To Rock</div>
+    <a class="album-card reveal" href="https://open.spotify.com/album/6inxoSZxmd5AvRBa5fvJ9Z" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <div class="album-cover"><img src="https://i.scdn.co/image/ab67616d0000b2737964c65329767ae5fc415ef5" alt="ConnivAnce" loading="lazy"></div>
       <div class="album-info">
-        <div class="album-title">Never Too Old To Rock</div>
-        <div class="album-year">2021</div>
-        <div class="album-type">EP3</div>
+        <div class="album-title">ConnivAnce</div>
+        <div class="album-year">2019</div>
+        <div class="album-type">EP1</div>
       </div>
-    </div>
-    <div class="album-card reveal">
-      <div class="album-cover">Last<br>Call</div>
-      <div class="album-info">
-        <div class="album-title">Last Call</div>
-        <div class="album-year">2022</div>
-        <div class="album-type">EP4</div>
-      </div>
-    </div>
-    <div class="album-card reveal">
-      <div class="album-cover">Jump Into<br>The Lion's<br>Den</div>
-      <div class="album-info">
-        <div class="album-title">Jump Into The Lion's Den</div>
-        <div class="album-year">2024</div>
-        <div class="album-type">EP5</div>
-      </div>
-    </div>
-    <div class="album-card reveal">
-      <div class="album-cover">VI</div>
-      <div class="album-info">
-        <div class="album-title">VI</div>
-        <div class="album-year">2025</div>
-        <div class="album-type">EP6</div>
-      </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -1082,6 +1195,7 @@ const T = {
     nav_videos: "Vidéos", nav_listen: "Écouter", nav_contact: "Contact",
     hero_sub: "Covers & compositions originales depuis 2019",
     hero_cta: "Écouter maintenant",
+    hero_follow: "Suivez-nous",
     gig_label: "Prochain concert", gig_venue: "Île-de-France", gig_cta: "Détails",
     about_title: "Cinq musiciens,<br>une complicité",
     about_p1: "ConnivAnce est un groupe de Rock/Pop/Funk originaire d'Île-de-France, né en 2019 de la rencontre de musiciens expérimentés partageant une même passion pour la scène. Le groupe tire son nom de cette entente exceptionnelle qui unit ses membres sur scène comme en studio.",
@@ -1106,6 +1220,7 @@ const T = {
     nav_videos: "Videos", nav_listen: "Listen", nav_contact: "Contact",
     hero_sub: "Covers & original compositions since 2019",
     hero_cta: "Listen now",
+    hero_follow: "Follow us",
     gig_label: "Next gig", gig_venue: "Île-de-France", gig_cta: "Details",
     about_title: "Five musicians,<br>one bond",
     about_p1: "ConnivAnce is a Rock/Pop/Funk band from the Île-de-France region, born in 2019 from the meeting of experienced musicians sharing a common passion for performing. The band takes its name from the exceptional chemistry that unites its members on stage and in the studio.",
@@ -1130,6 +1245,7 @@ const T = {
     nav_videos: "Video", nav_listen: "Ascolta", nav_contact: "Contatto",
     hero_sub: "Cover e composizioni originali dal 2019",
     hero_cta: "Ascolta ora",
+    hero_follow: "Seguici",
     gig_label: "Prossimo concerto", gig_venue: "Île-de-France", gig_cta: "Dettagli",
     about_title: "Cinque musicisti,<br>una complicità",
     about_p1: "ConnivAnce è un gruppo Rock/Pop/Funk dell'Île-de-France, nato nel 2019 dall'incontro di musicisti esperti che condividono la stessa passione per il palco. Il gruppo prende il nome dall'intesa eccezionale che unisce i suoi membri sul palco e in studio.",
@@ -1154,6 +1270,7 @@ const T = {
     nav_videos: "Videos", nav_listen: "Escuchar", nav_contact: "Contacto",
     hero_sub: "Covers y composiciones originales desde 2019",
     hero_cta: "Escuchar ahora",
+    hero_follow: "Síguenos",
     gig_label: "Próximo concierto", gig_venue: "Île-de-France", gig_cta: "Detalles",
     about_title: "Cinco músicos,<br>una complicidad",
     about_p1: "ConnivAnce es un grupo de Rock/Pop/Funk de Île-de-France, nacido en 2019 del encuentro de músicos experimentados que comparten la misma pasión por el escenario. El grupo toma su nombre de la excepcional compenetración que une a sus miembros en el escenario y en el estudio.",
@@ -1178,6 +1295,7 @@ const T = {
     nav_videos: "動画", nav_listen: "試聴", nav_contact: "お問い合わせ",
     hero_sub: "2019年からカバー＆オリジナル楽曲を演奏",
     hero_cta: "今すぐ聴く",
+    hero_follow: "フォローする",
     gig_label: "次のライブ", gig_venue: "イル＝ド＝フランス", gig_cta: "詳細",
     about_title: "5人のミュージシャン、<br>ひとつの絆",
     about_p1: "ConnivAnceはイル＝ド＝フランス地域を拠点とするロック/ポップ/ファンクバンドで、2019年にステージへの共通の情熱を持つ経験豊富なミュージシャンたちの出会いから誕生しました。バンド名は、メンバーを結びつける卓越した一体感に由来しています。",
@@ -1202,6 +1320,7 @@ const T = {
     nav_videos: "视频", nav_listen: "在线收听", nav_contact: "联系我们",
     hero_sub: "自2019年起演绎翻唱与原创作品",
     hero_cta: "立即收听",
+    hero_follow: "关注我们",
     gig_label: "下一场演出", gig_venue: "法兰西岛", gig_cta: "详情",
     about_title: "五位音乐人，<br>一种默契",
     about_p1: "ConnivAnce是一支来自法兰西岛大区的摇滚/流行/放克乐队，2019年由几位怀有共同舞台热情的资深音乐人组成。乐队名称源于成员之间在舞台和录音室中非凡的默契与和谐。",
@@ -1302,6 +1421,24 @@ window.addEventListener('scroll', () => {
     a.classList.toggle('active', a.getAttribute('href') === '#' + current);
   });
 }, { passive: true });
+
+/* ===== Hero particles ===== */
+(function() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  const count = window.innerWidth < 700 ? 12 : 24;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'hero-particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = '-2px';
+    p.style.width = (1 + Math.random() * 2) + 'px';
+    p.style.height = p.style.width;
+    p.style.animationDuration = (6 + Math.random() * 10) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    container.appendChild(p);
+  }
+})();
 </script>
 
 </body>
