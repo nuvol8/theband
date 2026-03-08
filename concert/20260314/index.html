@@ -33,12 +33,10 @@
       border-bottom: 1px solid var(--border);
     }
 
-    header h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
+    .logo {
+      width: 160px;
+      height: auto;
+      margin-bottom: 0.3rem;
     }
 
     header p {
@@ -199,7 +197,7 @@
 <body>
 
 <header>
-  <h1>Connivance</h1>
+  <img src="img/logo.png" alt="Connivance" class="logo">
   <p>Setlist — 14 avril 2026</p>
 </header>
 
@@ -214,26 +212,26 @@ const setlist = [
   { section: "Première partie" },
   { n: 1,  title: "Wish You Were Here",             artist: "Connivance",              key: null,  bpm: null,  file: null },
   { n: 2,  title: "Personal Jesus",                  artist: "Depeche Mode",            key: "B",   bpm: 130,  file: "clicks/02-Personal_Jesus.mp3" },
-  { n: 3,  title: "Come Together",                    artist: "The Beatles",             key: "Dm",  bpm: 83,   file: "clicks/03-Come_Together.mp3" },
+  { n: 3,  title: "Come Together",                    artist: "The Beatles",             key: "Cm",  bpm: 83,   file: "clicks/03-Come_Together.mp3" },
   { n: 4,  title: "Last Call",                        artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 5,  title: "Quand t'es dans le désert",       artist: "J.-P. Capdevielle",       key: "B♭m", bpm: 155,  file: "clicks/05-Quand_tes_dans_le_désert.mp3" },
+  { n: 5,  title: "Quand t'es dans le désert",       artist: "J.-P. Capdevielle",       key: "Gm",  bpm: 155,  file: "clicks/05-Quand_tes_dans_le_désert.mp3" },
   { n: 6,  title: "Creep",                            artist: "Radiohead",               key: "G",   bpm: 92,   file: "clicks/06-Creep.mp3" },
   { n: 7,  title: "When I Was Your Man",              artist: "Connivance",              key: null,  bpm: null,  file: null },
   { n: 8,  title: "Need You Tonight",                 artist: "INXS",                    key: "B♭m", bpm: 109,  file: "clicks/08-Need_You_Tonight.mp3" },
   { n: 9,  title: "Blame It On The Boogie",           artist: "The Jacksons",            key: "A♭",  bpm: 113,  file: "clicks/09-Blame_It_On_The_Boogie.mp3" },
   { n: 10, title: "When You Are Gone",                artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 11, title: "Californication",                   artist: "RHCP",                    key: "Am",  bpm: 96,   file: "clicks/11-Californication.mp3" },
+  { n: 11, title: "Californication",                   artist: "RHCP",                    key: "Fm",  bpm: 96,   file: "clicks/11-Californication.mp3" },
   { n: 12, title: "Love Me Two Times",                artist: "The Doors",               key: "E",   bpm: 133,  file: "clicks/12-Love_Me_Two_Times.mp3" },
   { n: 13, title: "Air",                               artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 14, title: "Feeling Good",                      artist: "Muse",                    key: "Gm",  bpm: 109,  file: "clicks/14-Feeling_Good.mp3" },
+  { n: 14, title: "Feeling Good",                      artist: "Muse",                    key: "Fm",  bpm: 109,  file: "clicks/14-Feeling_Good.mp3" },
   { n: 15, title: "Sweet Dreams Are Made Of This",    artist: "Marilyn Manson",          key: "Cm",  bpm: 92,   file: "clicks/15-Sweet_Dreams_Are_Made_Of_This.mp3" },
 
   { section: "Deuxième partie" },
   { n: 16, title: "Mathilde",                          artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 17, title: "Beds Are Burning",                  artist: "Midnight Oil",            key: "E",   bpm: 119,  file: "clicks/17-Beds_Are_Burning.mp3" },
+  { n: 17, title: "Beds Are Burning",                  artist: "Midnight Oil",            key: "C",   bpm: 119,  file: "clicks/17-Beds_Are_Burning.mp3" },
   { n: 18, title: "Miss You",                          artist: "Rolling Stones",          key: "Am",  bpm: 110,  file: "clicks/18-Miss_You.mp3" },
   { n: 19, title: "Foolish Lame",                      artist: "Connivance",              key: null,  bpm: null,  file: null },
-  { n: 20, title: "Mustang Sally",                     artist: "Wilson Pickett",          key: "C",   bpm: 110,  file: "clicks/20-Mustang_Sally.mp3" },
+  { n: 20, title: "Mustang Sally",                     artist: "Wilson Pickett",          key: "A",   bpm: 110,  file: "clicks/20-Mustang_Sally.mp3" },
   { n: 21, title: "Éteins la Lumière",                artist: "Axel Bauer",              key: "Am",  bpm: 145,  file: "clicks/21-Eteins_la_Lumière.mp3" },
   { n: 22, title: "Jump Into The Lion's Den",         artist: "Connivance",              key: null,  bpm: null,  file: null },
   { n: 23, title: "Psycho Killer",                     artist: "Talking Heads",           key: "A",   bpm: 123,  file: "clicks/23-Psycho_Killer.mp3" },
@@ -246,7 +244,7 @@ const setlist = [
   { n: 30, title: "Hound Dog",                         artist: "Elvis Presley",           key: "C",   bpm: 176,  file: "clicks/30-Hound_Dog.mp3" },
 
   { section: "Rappels" },
-  { n: 31, title: "Uprising",                          artist: "Muse",                    key: "Dm",  bpm: 128,  file: "clicks/31-Uprising.mp3" },
+  { n: 31, title: "Uprising",                          artist: "Muse",                    key: "Bm",  bpm: 128,  file: "clicks/31-Uprising.mp3" },
 ];
 
 let currentAudio = null;
