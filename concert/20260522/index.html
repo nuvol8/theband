@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connivance — Setlist 22 mai 2026</title>
+  <style>
+    :root {
+      --bg: #0e0e12;
+      --card: #18181f;
+      --accent: #e8a027;
+      --accent-dim: #b07818;
+      --text: #e8e6e1;
+      --muted: #8a8780;
+      --playing-bg: #261f14;
+      --border: #2a2a34;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.4rem 1rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      width: 110px;
+      height: auto;
+    }
+
+    header p {
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+    }
+
+    .setlist {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0.6rem 0.75rem 3rem;
+    }
+
+    /* Section divider */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.3rem 0.2rem 0.5rem;
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .section-header::before,
+    .section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Song card — entire card is the tap target */
+    .song {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.95rem 1rem;
+      min-height: 72px;
+      background: var(--card);
+      border-radius: 10px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: background 0.15s, border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .song:active {
+      background: #222229;
+    }
+
+    @keyframes playing-pulse {
+      0%, 100% { border-left-color: var(--accent); }
+      50%       { border-left-color: var(--accent-dim); }
+    }
+
+    .song.playing {
+      background: var(--playing-bg);
+      animation: playing-pulse 1.2s ease-in-out infinite;
+    }
+
+    .song.playing .song-title {
+      color: var(--accent);
+    }
+
+    .song.no-click {
+      opacity: 0.38;
+      cursor: default;
+    }
+
+    .song.no-click:active { background: var(--card); }
+
+    .song-num {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 2.2rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .song-title {
+      font-size: 1rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.15s;
+    }
+
+    .song-artist {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .badge-bpm {
+      background: #2a1e1e;
+      color: #d4907a;
+    }
+
+    .badge-key {
+      background: #1e2a1e;
+      color: #7ec87e;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="../../img/logo.png" alt="Connivance" class="logo">
+  <p>Setlist — 22 mai 2026</p>
+</header>
+
+<main class="setlist" id="setlist"></main>
+
+<footer>
+  Tap any song to hear a 4-bar count-in at tempo.
+</footer>
+
+<script>
+const setlist = [
+  { section: "Première partie" },
+  { n: 1,  title: "Connivance",                artist: "Connivance",       key: null,  bpm: 98,   file: "clicks/01-Connivance.wav" },
+  { n: 2,  title: "Come Together",              artist: "The Beatles",      key: "Cm",  bpm: 83,   file: "clicks/02-Come_Together.wav" },
+  { n: 3,  title: "I Shot the Sheriff",         artist: "Bob Marley",       key: "Gm",  bpm: 92,   file: "clicks/03-I_Shot_The_Sheriff.wav" },
+  { n: 4,  title: "Wish You Were Here",         artist: "Connivance",       key: null,  bpm: 127,  file: "clicks/04-Wish_You_Were_Here.wav" },
+  { n: 5,  title: "Californication",            artist: "RHCP",             key: "Fm",  bpm: 96,   file: "clicks/05-Californication.wav" },
+  { n: 6,  title: "Feeling Good",               artist: "Muse",             key: "Fm",  bpm: 74,   file: "clicks/06-Feeling_Good.wav" },
+  { n: 7,  title: "Air",                        artist: "Connivance",       key: null,  bpm: 120,  file: "clicks/07-Air.wav" },
+  { n: 8,  title: "Gaby Oh Gaby",               artist: "Alain Bashung",    key: "E",   bpm: 156,  file: "clicks/08-Gaby_Oh_Gaby.wav" },
+  { n: 9,  title: "Love Me Two Times",          artist: "The Doors",        key: "E",   bpm: 133,  file: "clicks/09-Love_Me_Two_Times.wav" },
+
+  { section: "Deuxième partie" },
+  { n: 10, title: "Mathilde",                   artist: "Connivance",       key: null,  bpm: 112,  file: "clicks/10-Mathilde.wav" },
+  { n: 11, title: "Blame It On The Boogie",     artist: "The Jacksons",     key: "A♭",  bpm: 113,  file: "clicks/11-Blame_It_On_The_Boogie.wav" },
+  { n: 12, title: "Beds Are Burning",           artist: "Midnight Oil",     key: "C",   bpm: 119,  file: "clicks/12-Beds_Are_Burning.wav" },
+  { n: 13, title: "Sunday Groove",              artist: "Connivance",       key: null,  bpm: 110,  file: "clicks/13-Sunday_Groove.wav" },
+  { n: 14, title: "Psycho Killer",              artist: "Talking Heads",    key: "A",   bpm: 116,  file: "clicks/14-Psycho_Killer.wav" },
+  { n: 15, title: "Miss You",                   artist: "Rolling Stones",   key: "Am",  bpm: 110,  file: "clicks/15-Miss_You.wav" },
+  { n: 16, title: "Foolish Lame",               artist: "Connivance",       key: null,  bpm: 120,  file: "clicks/16-Foolish_Lame.wav" },
+  { n: 17, title: "Let's Dance",                artist: "David Bowie",      key: "A♭",  bpm: 116,  file: "clicks/17-Lets_Dance.wav" },
+  { n: 18, title: "Blue Suede Shoes",           artist: "Elvis Presley",    key: "A",   bpm: 190,  file: "clicks/18-Blue_Suede_Shoes.wav" },
+  { n: 19, title: "Jump into The Lion's Den",   artist: "Connivance",       key: null,  bpm: 120,  file: "clicks/19-Jump_Into_The_Lions_Den.wav" },
+  { n: 20, title: "Éteins la Lumière",          artist: "Axel Bauer",       key: "Am",  bpm: 145,  file: "clicks/20-Eteins_la_Lumiere.wav" },
+
+  { section: "Rappels" },
+  { n: 21, title: "Uprising",                   artist: "Muse",             key: "Bm",  bpm: 128,  file: "clicks/21-Uprising.wav" },
+  { n: 22, title: "Love Sucks",                 artist: "Connivance",       key: null,  bpm: 112,  file: "clicks/22-Love_Sucks.wav" },
+];
+
+let currentAudio = null;
+let currentRow = null;
+
+function playSong(file, row) {
+  if (currentAudio && currentRow === row) {
+    currentAudio.pause();
+    currentAudio = null;
+    row.classList.remove("playing");
+    currentRow = null;
+    return;
+  }
+
+  if (currentAudio) {
+    currentAudio.pause();
+    if (currentRow) currentRow.classList.remove("playing");
+  }
+
+  currentAudio = new Audio(file);
+  currentRow = row;
+  row.classList.add("playing");
+  currentAudio.play();
+  currentAudio.addEventListener("ended", () => {
+    row.classList.remove("playing");
+    currentAudio = null;
+    currentRow = null;
+  });
+}
+
+const container = document.getElementById("setlist");
+
+setlist.forEach(item => {
+  if (item.section) {
+    const div = document.createElement("div");
+    div.className = "section-header";
+    div.textContent = item.section;
+    container.appendChild(div);
+    return;
+  }
+
+  const row = document.createElement("div");
+  row.className = "song" + (item.file ? "" : " no-click");
+
+  const num = document.createElement("span");
+  num.className = "song-num";
+  num.textContent = String(item.n).padStart(2, "0");
+
+  const info = document.createElement("div");
+  info.className = "song-info";
+
+  const title = document.createElement("div");
+  title.className = "song-title";
+  title.textContent = item.title;
+
+  const artist = document.createElement("div");
+  artist.className = "song-artist";
+  artist.textContent = item.artist;
+
+  info.appendChild(title);
+  info.appendChild(artist);
+
+  const meta = document.createElement("div");
+  meta.className = "song-meta";
+
+  if (item.bpm) {
+    const b = document.createElement("span");
+    b.className = "badge badge-bpm";
+    b.textContent = item.bpm + " bpm";
+    meta.appendChild(b);
+  }
+  if (item.key) {
+    const k = document.createElement("span");
+    k.className = "badge badge-key";
+    k.textContent = item.key;
+    meta.appendChild(k);
+  }
+
+  row.appendChild(num);
+  row.appendChild(info);
+  row.appendChild(meta);
+  container.appendChild(row);
+
+  if (item.file) {
+    row.addEventListener("click", () => playSong(item.file, row));
+  }
+});
+</script>
+
+</body>
+</html>
